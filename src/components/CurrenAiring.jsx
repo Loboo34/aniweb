@@ -57,7 +57,9 @@ const CurrenAiring = () => {
                 className="  h-[100%] w-[100%] mask1"
               />
               <div className=" text-white absolute top-[10%] left-0 z-10 md:pl-4 ">
-                <h1 className=" md:text-[30px] text-[.9rem] font-black md:pb-6 pb-2">{anime.name}</h1>
+                <h1 className=" md:text-[30px] text-[.9rem] font-black md:pb-6 pb-2">
+                  {anime.name}
+                </h1>
                 <div className="md:pb-6 pb-2 flex items-center space-x-2">
                   <span>sub | dub</span>
 
@@ -85,13 +87,13 @@ const CurrenAiring = () => {
         ))}
       </Swiper>
       <div
-        className=" absolute left-[35px] top-[50%] text-white z-10 cursor-pointer text-[20px] font-semibold"
+        className=" absolute md:left-[35px] left-[5px] md:top-[50%] max-md:hidden top-[55%] text-white z-10 cursor-pointer text-[20px] font-semibold"
         ref={swiperNavPrevRef}
       >
         <FontAwesomeIcon icon={faAngleLeft} />
       </div>
       <div
-        className=" absolute right-[35px] top-[50%] z-10 text-white cursor-pointer text-[20px] font-semibold "
+        className=" absolute md:right-[35px] right-[5px] md:top-[50%] max-md:hidden top-[55%] z-10 text-white cursor-pointer text-[20px] font-semibold "
         ref={swiperNavNextRef}
       >
         <FontAwesomeIcon icon={faAngleRight} />

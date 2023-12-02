@@ -22,7 +22,7 @@ const Navbar = ({ toggle }) => {
      const [open, setOpen] = useState(false);
      const closeModal = () => setOpen(false);
   return (
-    <div className=" fixed z-40 w-[100%] text-[#00a2ff] flex items-center pt-1 pl-2 pb-2 bg-[#000000e8]">
+    <div className=" fixed z-40 w-full text-[#00a2ff] flex items-center pt-2 pl-2 pb-2 bg-[#000000e8]">
       <FontAwesomeIcon
         icon={faBars}
         className=" md:text-[28px] text-[1rem] pr-4
@@ -31,9 +31,9 @@ const Navbar = ({ toggle }) => {
       />
       <div className=" flex space-x-2 pr-4  items-center">
         <img src="/img/logo1.png" alt="logo" className=" md:w-[50px] w-[30px]  h-auto " />
-        <p className=" md:text-[22px] text-[.9rem] ">Slurp</p>
+        <p className=" md:text-[22px] text-[1rem] ">Slurp</p>
       </div>
-      <div
+      {/* <div
         className="flex space-x-2 items-center"
         onClick={() => {
           setPopUp(true);
@@ -45,7 +45,7 @@ const Navbar = ({ toggle }) => {
           className="text-[14px] pt-2 active:bg-red-500"
         />
         <Popup trigger={popUp} setTrigger={setPopUp} />
-      </div>
+      </div> */}
 
       <div className=" absolute right-2 pr-2 flex items-center space-x-3 ">
         <FontAwesomeIcon
