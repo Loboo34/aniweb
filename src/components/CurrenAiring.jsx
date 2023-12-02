@@ -49,7 +49,7 @@ const CurrenAiring = () => {
       >
         {animeData.map((anime) => (
           <SwiperSlide>
-            <div className=" relative md:h-[500px] h-[400px] max-md:w-[100%] flex bg-black  airing">
+            <div className=" relative md:h-[500px] h-[300px] max-md:w-[100%] flex bg-black  airing">
               {/* style={{ backgroundImage: `url(${anime.img})` }} */}
               <img
                 src={anime.img}
@@ -57,21 +57,21 @@ const CurrenAiring = () => {
                 className="  h-[100%] w-[100%] mask1"
               />
               <div className=" text-white absolute top-[10%] left-0 z-10 md:pl-4 ">
-                <h1 className=" text-[30px] font-black pb-6">{anime.name}</h1>
-                <div className="pb-6 flex items-center space-x-2">
+                <h1 className=" md:text-[30px] text-[.9rem] font-black md:pb-6 pb-2">{anime.name}</h1>
+                <div className="md:pb-6 pb-2 flex items-center space-x-2">
                   <span>sub | dub</span>
 
                   <span>Action, shounen,Guns.... </span>
                 </div>
-                <p className=" text-left md:pr-[50%] text-[14px] font-medium pb-6 ">
+                <p className=" text-left md:pr-[50%] md:text-[14px] text-[.7rem] font-medium pb-6 ">
                   Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                   Modi, rerum assumenda qui magni voluptatem sint mollitia,
                   dolorum dignissimos iure iusto similique cum fuga tenetur
                   expedita officiis ullam eaque aspernatur obcaecati?
                 </p>
-                <div className=" flex space-x-4 pt-6">
+                <div className=" flex space-x-4 md:pt-6">
                   <span className=" text-[.9rem] md:text-[1.2rem] bg-blue-600 pl-3 pr-3 pt-2 pb-2  cursor-default hover:text-black">
-                    <FontAwesomeIcon icon={faPlay} className=" pr-2 mt-1" />
+                    <FontAwesomeIcon icon={faPlay} className=" pr-2 mt-1 " />
                     Watch Now
                   </span>
 
