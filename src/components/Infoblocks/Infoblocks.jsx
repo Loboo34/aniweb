@@ -1,0 +1,48 @@
+import React from "react";
+import animeData from "../../AnimeData";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
+import myBlocks from "./myBlocks";
+
+const Infoblocks = () => {
+ 
+  const animeInfo = animeData.slice(0, 5);
+
+  return (
+    <div className=" md:flex space-x-3 pb-5">
+      {myBlocks.map((block) => (
+        <div className="  w-[300px]  pl-3 pb-6 flex flex-col space-x-1 relative  ">
+          <h1 className=" text-[#00a2ff] pb-4 text-[20px]">{block.title}</h1>
+          {animeInfo.map((anime) => (
+            <div className=" flex space-x-2 pb-2  w-full" key={anime.id}>
+              <Link to={`anime/${anime.name}`}>
+                <img
+                  src={anime.cardpic}
+                  alt="pic"
+                  className=" pl-1 mr-1 w-[70px] h-[80px]"
+                />
+              </Link>
+              <div className=" text-white">
+                <p className=" text-[.8rem] font-semibold text-left ">{anime.name}</p>
+                <p className=" text-[16px]">no of ep: {anime.noEp}</p>
+              </div>
+            </div>
+          ))}
+          <Link to={`viewmore/${block.title}`}>
+            <div className=" absolute bottom-0 mt-3 flex  items-center left-4 opacity-80 hover:opacity-100 cursor-default">
+              <p className=" text-[#00a2ff] text-[16px]  pr-3">View more</p>
+              <FontAwesomeIcon
+                icon={faAngleRight}
+                className="text-[#00a2ff] pt-1 text-[15px] font-extrabold "
+              />
+            </div>
+          </Link>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default Infoblocks;

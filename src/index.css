@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.info{
+   opacity: 0;
+ background-size: cover;
+ background-blend-mode: multiply;
+ background-color: rgba(0, 0, 0, 0.87);
+ transition: 1s;
+ width: 100%;
+ height: 100%;
+}
+.container:hover{
+ 
+}
+.container:hover .info{
+opacity: 1;
+ transition: 1s;
+}
+/* .airing{
+ background: black;
+overflow: hidden;
+    background: #191919;  
+    background: -webkit-linear-gradient(rgba(6, 6, 6, 0.8), rgba(215, 210, 211, 0.8)), ;
+   
+} */
+.mask1 {
+  -webkit-mask-image: radial-gradient(ellipse 100% 90% at 88% 60%, rgba(0, 0, 0, 0.785) 40%, transparent 80%);
+  mask-image: radial-gradient(ellipse 100% 90% at 88% 60%, rgba(0, 0, 0, 0.785) 40%, transparent 80%);
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 110px;
+  background-color: rgba(57, 53, 53, 0.998);
+  
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 130%;
+  left: 75%;
+  margin-left: -60px;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgba(57, 53, 53, 0.998) transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.about{
+  position: relative;
+  z-index: 0;
+}
+/* .about::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-image: url("../public/img/naruto.jpg");
+  filter: blur(10px); 
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+} */
+.alt{
+ background-size: cover;
+ background-blend-mode: multiply;
+ background-color: rgba(0, 0, 0, 0.781);
+ transition: 1s;
+ width: 100%;
+}
+
+.cardcontainer{
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.top:hover span{
+  color: white;
+  text-decoration: underline;
+}
+.log{
+  background-size: cover;
+ background-blend-mode: multiply;
+ background-color: rgba(0, 0, 0, 0.911);
+}
+.popup-overlay {
+  background: rgba(0, 0, 0, 0.705);
+}
