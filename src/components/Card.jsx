@@ -10,7 +10,7 @@ const Card = (props) => {
     <div className=" cardcontainer">
       {props.animeData.map((anime) => (
         <Link to={`anime/${anime.name}`}>
-          <div className="pb-6 relative md:h-[320px] md:w-[220px] w-[150px] h-[300px]   text-white container ">
+          <div className="pb-6 relative md:h-[320px] md:w-[220px] w-[200px] h-[300px]   text-white container ">
             <img
               src={anime.cardpic}
               alt={anime.name}

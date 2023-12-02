@@ -132,7 +132,7 @@ const related = animeData.slice(0, 4)
         </div>
       </div>
       {/* break */}
-      <div className="pl-8 w-9/12">
+      <div className="md:pl-8 md:w-9/12 w-full pb-[50px]">
         <h1 className=" text-[#00a2ff] text-[2rem] pb-4">Related</h1>
         <Card animeData={related} />
       </div>

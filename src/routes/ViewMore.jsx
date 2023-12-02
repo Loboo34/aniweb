@@ -19,9 +19,9 @@ const ViewMore = () => {
   const genre = animeData
 const url =  `genre/${genre.name}`
   return (
-    <div className=" pt-[60px] bg-[#000000] pl-4 pr-5">
+    <div className=" pt-[60px] bg-[#000000] md:pl-4 pr-5">
       <div className="flex w-full ">
-        <div className=" md:w-9/12">
+        <div className=" md:w-9/12 w-full">
           <h1 className="text-[#00a2ffe7]  pb-4 text-[2.2rem] pl-4 font-semibold">
             {block.title}
           </h1>

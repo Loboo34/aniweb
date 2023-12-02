@@ -93,7 +93,7 @@ overflow: hidden;
 .cardcontainer{
   display: grid;
   gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(190px, 2fr));
 }
 .top:hover span{
   color: white;
