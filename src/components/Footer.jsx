@@ -136,18 +136,18 @@ const Footer = () => {
   };
   return (
     <div className="  pt-8 pb-8  pl-4 bg-[#000000d9] " style={myStyle}>
-      <div className=" flex pb-4 md:pb-8 max-md:flex max-md:justify-center max-md:items-center">
+      <div className=" flex pb-4  max-md:items-center max-md:justify-center">
         <img
           src="/img/logo1.png"
           alt="img1"
           className="h-[12] w-[90px] pl-6 max-md:hidden"
         />
         <hr className=" text-black h-[50px] w-[50px] font-bold rotate-90 -ml-2 opacity-20 max-md:hidden" />
-        <h1 className=" pl-10 text-center text-white leading-4 pt-2 max-md:hidden">
+        <h1 className=" pl-10 text-center text-white leading-4 pt-2 hidden ">
           Join <br />
           now
         </h1>
-        <div className="pl-3 pt-3  flex space-x-3">
+        <div className="md:pl-3 md:pt-3  flex space-x-3 ">
           <FontAwesomeIcon
             icon={faDiscord}
             className=" text-3xl text-[#00a2ff]  rounded pl-1 pr-1"
@@ -186,7 +186,7 @@ const Footer = () => {
           </button>
         ))}
       </div>
-      <div className=" flex md:pt-6 ">
+      <div className=" md:flex md:pt-6 ">
         <h1 className=" pr-8 text-[10px] md:text-sm text-white">
           Terms of service
         </h1>

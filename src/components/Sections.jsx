@@ -42,7 +42,7 @@ const Sections = () => {
           </h1>
           <Swiper
             style={{
-              "--swiper-navigation-color": "white",
+              "--swiper-navigation-color": "blue",
               "--swiper-pagination-color": "white",
             }}
             slidesPerView={5}

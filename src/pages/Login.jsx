@@ -7,9 +7,9 @@ const Login = (props) => {
     await login(email, password);
   };
   return (
-    <div className=" top-0 left-0 w-full h-full bg-[#3e3d3dbd] flex justify-center items-center">
+    <div className="  w-[100%] h-full bg-[#eb5151bd] ">
       <div
-        className="relative  w-[500px] h-[450px] text-white pt-4 pl-10 log"
+        className="relative  md:w-[450px] md:h-[450px]  text-white pt-4 pl-10 max-md:pb-3 log"
         style={{ backgroundImage: "url(/img/slimebg.jpg)" }}
       >
         <h1 className=" text-center pb-9 ">Welcome Back</h1>

@@ -4,6 +4,7 @@ import {
   faBars,
   faSearch,
   faAngleDown,
+  faXmark
 } from "@fortawesome/free-solid-svg-icons";
 //import Popup from "./Popup";
 
@@ -14,24 +15,28 @@ import Register from "../pages/Register";
 
 const Navbar = ({ toggle }) => {
   const [popUp, setPopUp] = useState(false);
-  const [currentForm, setCurrentForm] = useState("login")
+  const [currentForm, setCurrentForm] = useState("login");
 
-    const toggleForm = (formName) => {
-      setCurrentForm(formName);
-    };
-     const [open, setOpen] = useState(false);
-     const closeModal = () => setOpen(false);
+  const toggleForm = (formName) => {
+    setCurrentForm(formName);
+  };
+  const [open, setOpen] = useState(false);
+  const closeModal = () => setOpen(false);
   return (
-    <div className=" fixed z-40 w-full text-[#00a2ff] flex items-center pt-2 pl-2 pb-2 bg-[#000000e8]">
+    <div className=" fixed z-40 w-[100%] text-[#00a2ff] flex items-center pt-2 pl-2 pb-2 bg-[#000000e8]">
       <FontAwesomeIcon
         icon={faBars}
-        className=" md:text-[28px] text-[1rem] pr-4
+        className=" md:text-[28px] text-[1.2rem] pr-4
       "
         onClick={toggle}
       />
       <div className=" flex space-x-2 pr-4  items-center">
-        <img src="/img/logo1.png" alt="logo" className=" md:w-[50px] w-[30px]  h-auto " />
-        <p className=" md:text-[22px] text-[1rem] ">Slurp</p>
+        <img
+          src="/img/logo1.png"
+          alt="logo"
+          className=" md:w-[50px] w-[30px]  h-auto "
+        />
+        <p className=" md:text-[22px] text-[1rem] hover:text-white ">Slurp</p>
       </div>
       {/* <div
         className="flex space-x-2 items-center"
@@ -50,26 +55,28 @@ const Navbar = ({ toggle }) => {
       <div className=" absolute right-2 pr-2 flex items-center space-x-3 ">
         <FontAwesomeIcon
           icon={faSearch}
-          className=" pr-2 text-[18px] text-white"
+          className=" pr-2 text-[1.3rem] text-white"
         />
-     
-         <div>
-            <button className=" text-[18px] bg-[#00a2ff] text-black pl-2 pr-2 pt-1 pb-1 rounded-md font-bold" onClick={() => setOpen(o => !o)}>
-              LogIn
-            </button>
-        <Popup open={open} closeOnDocumentClick onClose={closeModal}>
-        
-       
-          
-            <div className="modal ">
-             
+
+        <div>
+          <button
+            className=" text-[18px] bg-[#00a2ff] text-black pl-2 pr-2 pt-1 pb-1 rounded-md font-bold"
+            onClick={() => setOpen((o) => !o)}
+          >
+            LogIn
+          </button>
+          <Popup open={open} closeOnDocumentClick onClose={closeModal}>
+            <div className="modal max-md:fixed top-[30px] right-[10%]  border-2 border-red-300 ">
+              <span className=" absolute -right-3 -top-4 z-10 text-[1.4rem] bg-white p-2 pt-1 pb-1 rounded-[50px] close" onClick={closeModal}>
+                <FontAwesomeIcon icon={faXmark} className=" "/>
+              </span>
               {currentForm === "login" ? (
                 <Login onFormSwich={toggleForm} />
               ) : (
                 <Register onFormSwich={toggleForm} />
               )}
             </div>
-        </Popup>
+          </Popup>
         </div>
       </div>
     </div>

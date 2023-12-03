@@ -102,7 +102,7 @@ overflow: hidden;
 .log{
   background-size: cover;
  background-blend-mode: multiply;
- background-color: rgba(0, 0, 0, 0.911);
+ background-color: rgba(0, 0, 0, 0.922);
 }
 .popup-overlay {
   background: rgba(0, 0, 0, 0.705);

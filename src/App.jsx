@@ -40,7 +40,7 @@ const App = () => {
     SetIsOpen(!isOpen);
   };
   return (
-    <div>
+    <div className=" w-full relative overflow-hidden">
       <Navbar toggle={toggle} />
       <Sidebar isOpen={isOpen} toggle={toggle} />
       <RouterProvider router={router} />
