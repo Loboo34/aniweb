@@ -1,13 +1,24 @@
-const express = require('express')
-const path = require('path')
+const express = require("express");
+const mongoose = require("mongoose");
+const connectDb = require("./Config/dbConnection");
+require("dotenv").config();
+//const path = require('path')
+connectDb()
 const app = express();
-const PORT = process.env.PORT || 4000
+//const PORT = process.env.PORT || 4000;
 
+app.use("/api/anime", require("./Routes/animeRoutes"));
+app.use("/api/user", require("./Routes/userRoutes"));
 
-app.get('/', (req, res) =>{
-    res.send('hell0')
-})
-
-app.listen(PORT, () => {
-    console.log(`listening on prt ${PORT}`)
-})
+//db
+// mongoose
+//   .connect(process.env.MONGO_URI)
+//   .then(() => {
+   
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
+ app.listen(process.env.PORT, () => {
+   console.log(" Node server running");
+ });
