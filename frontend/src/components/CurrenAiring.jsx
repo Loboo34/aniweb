@@ -48,7 +48,7 @@ const CurrenAiring = () => {
         }}
       >
         {animeData.map((anime) => (
-          <SwiperSlide>
+          <SwiperSlide key={anime.id}>
             <div className=" relative md:h-[500px] h-[300px] max-md:w-[100%] flex bg-black  airing">
               {/* style={{ backgroundImage: `url(${anime.img})` }} */}
               <img

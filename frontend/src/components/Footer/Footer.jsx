@@ -6,126 +6,11 @@ import {
   faReddit,
   faDiscord,
 } from "@fortawesome/free-brands-svg-icons";
+import footerLinks from "./FooterLinks";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
-    const footerLinks = [
-      {
-        name: "All",
-        path: "/AZ-list",
-      },
-      {
-        name: "#",
-        path: "/",
-      },
-      {
-        name: "0-9",
-        path: "/",
-      },
-      {
-        name: "A",
-        path: "/",
-      },
-      {
-        name: "B",
-        path: "/",
-      },
-      {
-        name: "C",
-        path: "/",
-      },
-      {
-        name: "D",
-        path: "/",
-      },
-      {
-        name: "E",
-        path: "/",
-      },
-      {
-        name: "F",
-        path: "/",
-      },
-      {
-        name: "G",
-        path: "/",
-      },
-      {
-        name: "H",
-        path: "/",
-      },
-      {
-        name: "I",
-        path: "/",
-      },
-      {
-        name: "J",
-        path: "/",
-      },
-      {
-        name: "K",
-        path: "/",
-      },
-      {
-        name: "L",
-        path: "/",
-      },
-      {
-        name: "M",
-        path: "/",
-      },
-      {
-        name: "N",
-        path: "/",
-      },
-      {
-        name: "O",
-        path: "/",
-      },
-      {
-        name: "P",
-        path: "/",
-      },
-      {
-        name: "Q",
-        path: "/",
-      },
-      {
-        name: "R",
-        path: "/",
-      },
-      {
-        name: "S",
-        path: "/",
-      },
-      {
-        name: "T",
-        path: "/",
-      },
-      {
-        name: "U",
-        path: "/",
-      },
-      {
-        name: "V",
-        path: "/",
-      },
-      {
-        name: "W",
-        path: "/",
-      },
-      {
-        name: "X",
-        path: "/",
-      },
-      {
-        name: "Y",
-        path: "/",
-      },
-      {
-        name: "Z",
-        path: "/",
-      },
-    ];
+ //const navigate = useNavigate()
   const myStyle = {
     backgroundImage: "url(/img/footer.jpg)",
     // backgroundPositionX: 'right',
@@ -135,7 +20,7 @@ const Footer = () => {
     width: "100%",
   };
   return (
-    <div className="  pt-8 pb-8  pl-4 bg-[#000000d9] " style={myStyle}>
+    <div className=" relative pt-8 pb-8  pl-4 bg-[#000000d9] " style={myStyle}>
       <div className=" flex pb-4  max-md:items-center max-md:justify-center">
         <img
           src="/img/logo1.png"
@@ -174,16 +59,18 @@ const Footer = () => {
           Searching anime order by alphabet name A to Z.
         </h4>
       </div>
-      <div className=" pt-4 flex space-x-3 max-md:hidden">
+      <div className=" pt-4 flex flex-wrap space-x-1 max-md:hidden">
         {footerLinks.map((link) => (
-          <button
-            className=" text-[14px] pt-1 pb-1  bg-black text-white pl-2 pr-2 rounded mr-2 hover:bg-pink-500 font-medium"
-            onClick={() => {
-              window.location.pathname = link.path;
-            }}
-          >
-            {link.name}
-          </button>
+          <Link to={`/az-list/${link.name}`} key={link.id}>
+            <button
+              className=" text-[1rem] pt-1 pb-1  bg-black text-white pl-2 pr-2 rounded mr-2 hover:bg-pink-500 font-medium"
+              // onClick={() => {
+              //   window.location.pathname = link.path;
+              // }}
+            >
+              {link.name}
+            </button>
+          </Link>
         ))}
       </div>
       <div className=" md:flex md:pt-6 ">

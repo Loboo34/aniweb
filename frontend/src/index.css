@@ -11,20 +11,13 @@
  width: 100%;
  height: 100%;
 }
-.container:hover{
- 
-}
+
 .container:hover .info{
 opacity: 1;
  transition: 1s;
 }
-/* .airing{
- background: black;
-overflow: hidden;
-    background: #191919;  
-    background: -webkit-linear-gradient(rgba(6, 6, 6, 0.8), rgba(215, 210, 211, 0.8)), ;
-   
-} */
+
+
 .mask1 {
   -webkit-mask-image: radial-gradient(ellipse 100% 90% at 88% 60%, rgba(0, 0, 0, 0.785) 40%, transparent 80%);
   mask-image: radial-gradient(ellipse 100% 90% at 88% 60%, rgba(0, 0, 0, 0.785) 40%, transparent 80%);
@@ -102,6 +95,7 @@ overflow: hidden;
 .log{
   background-size: cover;
  background-blend-mode: multiply;
+ 
  background-color: rgba(0, 0, 0, 0.922);
 }
 .popup-overlay {

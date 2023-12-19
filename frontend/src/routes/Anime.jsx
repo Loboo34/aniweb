@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faShareNodes, faAdd } from "@fortawesome/free-solid-svg-icons";
@@ -13,9 +13,11 @@ import { Pagination, Navigation, Keyboard } from "swiper/modules";
 
 import animeData from "../AnimeData";
 import Card from "../components/Card"
+import Footer from "../components/Footer/Footer";
 
 
 const Anime = () => {
+   //const navigate = useNavigate();
   const { name } = useParams();
  const anime = animeData.find((anime) => anime.name === name);
 
@@ -27,42 +29,9 @@ const Anime = () => {
     );
   }
 const related = animeData.slice(0, 4)
+const navigate = useNavigate()
   return (
-    <div className=" bg-[#000000] pt-[60px] pb-[30px]">
-      {/* <div className=" relative about">
-        <div
-          className=" w-full h-[350px] bg-[#00000010] relative"
-          style={{
-            backgroundImage: `url(${anime.img})`,
-            backgroundSize: "cover",
-            filter: "blur(20px)",
-          }}
-        ></div>
-        <div className=" absolute top-[18%] left-[50px] text-white flex space-x-6">
-          <img src={anime.cardpic} alt={anime.name} />
-          <div>
-            <h1 className=" text-4xl font-semibold pb-4">{anime.name}</h1>
-            <p>sub|dub</p>
-            <p className=" pr-[50%]">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro,
-              necessitatibus. Explicabo laudantium quam libero nemo suscipit
-              incidunt doloribus recusandae nulla? Natus error, corporis quaerat
-              ab aliquid similique vitae tempore quidem?
-            </p>
-            <div>
-              <span>
-                <FontAwesomeIcon icon={faPlay} />
-                Watch Now
-              </span>
-              <span>
-                <FontAwesomeIcon icon={faBookmark} />
-                Add to watchlist
-              </span>
-            </div>
-          </div>
-        </div>
-      </div> */}
-      {/* diff */}
+    <div className=" bg-[#000000] pt-[60px] ">
       <div
         className="  h-[200px] flex justify-center alt"
         style={{
@@ -132,7 +101,7 @@ const related = animeData.slice(0, 4)
         </div>
       </div>
       {/* break */}
-      <div className="md:pl-8 md:w-9/12 w-full pb-[50px]">
+    <div className="md:pl-8 md:w-9/12 w-full pb-[50px]">
         <h1 className=" text-[#00a2ff] text-[2rem] pb-4">Related</h1>
         <Card animeData={related} />
       </div>
@@ -160,7 +129,9 @@ const related = animeData.slice(0, 4)
           {animeData.map((anime) => (
             <SwiperSlide>
               <Link to={`anime/${anime.name}`}>
-                <div className="text-white relative cursor-pointer container h-[100%]">
+                <div className="text-white relative cursor-pointer container h-[100%]" onClick={() => {
+                  navigate(`anime/${anime.name}`)
+                }}>
                   <img
                     src={anime.cardpic}
                     alt={anime.name}
@@ -210,6 +181,7 @@ const related = animeData.slice(0, 4)
           ))}
         </Swiper>
       </div>
+      <Footer />
     </div>
   );
 };

@@ -1,19 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
+import { useLogin } from "../hooks/useLogin";
 
 const Login = (props) => {
-  const handleSubmit = async (e) => {
+const [email, setEmail] = useState("")
+const [password, setPassword] = useState("")
+const { loginUser, isLoading } = useLogin()
+   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await login(email, password);
+    await loginUser(email, password);
   };
   return (
-    <div className="  w-[100%] h-full bg-[#eb5151bd] ">
+    <div className=" ">
       <div
-        className="relative  md:w-[450px] md:h-[450px]  text-white pt-4 pl-10 max-md:pb-3 log"
+        className=" pl-10 w-[100%] h-[100%] pt-5 text-white pb-10 log"
         style={{ backgroundImage: "url(/img/slimebg.jpg)" }}
       >
-        <h1 className=" text-center pb-9 ">Welcome Back</h1>
-        <form>
+        <h1 className="  text-[#00a2ff] text-2xl pb-6  ">Welcome Back</h1>
+        <form onSubmit={handleSubmit}>
           <div className=" flex flex-col w-full pb-3">
             <label className=" pb-2 text-[1.2rem]">Email</label>
             <input
@@ -22,7 +26,9 @@ const Login = (props) => {
               required
               name="email"
               id="email"
+              value={email}
               className=" w-[80%] outline-none h-[30px] text-black pl-2 "
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className=" flex flex-col w-full pb-3">
@@ -34,7 +40,9 @@ const Login = (props) => {
               placeholder="password"
               required
               name="password"
+              value={password}
               className=" w-[80%] outline-none h-[30px] text-black pl-2"
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <div className=" flex space-x-3 pb-3">

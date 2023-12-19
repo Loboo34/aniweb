@@ -1,11 +1,11 @@
 const myBlocks = [
-  { id: 1,
+  { id: 0,
      title: "TopAring" },
-  { id: 2, 
+  { id: 1, 
     title: "Trending" },
-  { id: 3, 
+  { id: 2, 
     title: "Popular" },
-  { id: 4, 
+  { id: 3, 
     title: "Completed" },
 ];
 export default myBlocks;

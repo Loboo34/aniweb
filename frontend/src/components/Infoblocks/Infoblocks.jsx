@@ -3,27 +3,29 @@ import animeData from "../../AnimeData";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import myBlocks from "./myBlocks";
 
 const Infoblocks = () => {
- 
+ const navigate = useNavigate()
   const animeInfo = animeData.slice(0, 5);
 
   return (
     <div className=" md:flex space-x-3 pb-5">
       {myBlocks.map((block) => (
-        <div className="  w-[300px]  pl-3 pb-6 flex flex-col space-x-1 relative  ">
+        <div className="  w-[300px]  pl-3 pb-6 flex flex-col space-x-1 relative" key={block.id}>
           <h1 className=" text-[#00a2ff] pb-4 text-[20px]">{block.title}</h1>
           {animeInfo.map((anime) => (
             <div className=" flex space-x-2 pb-2  w-full" key={anime.id}>
-              <Link to={`anime/${anime.name}`}>
+              
                 <img
                   src={anime.cardpic}
                   alt="pic"
-                  className=" pl-1 mr-1 w-[70px] h-[80px]"
+                  className=" pl-1 mr-1 w-[70px] h-[80px]" onClick={() => {
+navigate(`anime/${anime.name}`)
+                  }}
                 />
-              </Link>
+            
               <div className=" text-white">
                 <p className=" text-[.8rem] font-semibold text-left ">{anime.name}</p>
                 <p className=" text-[16px]">no of ep: {anime.noEp}</p>
