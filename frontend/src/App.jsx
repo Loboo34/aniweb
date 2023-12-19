@@ -23,31 +23,31 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "popular",
+    path: "/popular",
     element: <Popular />,
   },
   {
-    path: "tvseries",
+    path: "/tvseries",
     element: <Series />,
   },
   {
-    path: "movies",
+    path: "/movies",
     element: <Movies />,
   },
   {
-    path: "anime/:name",
+    path: "/anime/:name",
     element: <Anime />,
   },
   {
-    path: "viewmore/:title",
+    path: "/viewmore/:title",
     element: <ViewMore />,
   },
   {
-    path: "genre/:name",
+    path: "/genre/:name",
     element: <Genre />,
   },
   {
-    path: "az-list/:name",
+    path: "/az-list/:name",
     element: <AZlist />
   }
 ]);
