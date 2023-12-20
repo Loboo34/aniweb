@@ -12,7 +12,7 @@ const Card = (props) => {
       {props.animeData.map((anime) => (
       
         <div
-          className="pb-6 relative md:h-[320px] md:w-[220px] w-[200px] h-[300px]   text-white container "
+          className="pb-6 relative md:h-[320px]  h-[300px]   text-white container card "
            onClick={() => {
             navigate(`/anime/${anime.name}`);
          }} key={anime.id}

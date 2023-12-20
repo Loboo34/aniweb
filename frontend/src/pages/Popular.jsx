@@ -21,7 +21,7 @@ const Popular = () => {
     <div className=" bg-[#000000] pt-[55px]">
       <div className=" md:w-full md:flex ">
         <div className=" md:w-9/12 w-full">
-          <h1 className=" text-[#00a2ffe7]  pb-4 text-[2.2rem] font-semibold">
+          <h1 className=" text-[#00a2ffe7]  pb-4 pl-2 md:text-[2.2rem] text-[1.4rem] font-semibold">
             Most Popular
           </h1>
           <Card animeData={animeData} />

@@ -128,7 +128,7 @@ const navigate = useNavigate()
         >
           {animeData.map((anime) => (
             <SwiperSlide>
-              <Link to={`anime/${anime.name}`}>
+              <Link to={`anime/${anime.name}`} key={anime.id}>
                 <div className="text-white relative cursor-pointer container h-[100%]" onClick={() => {
                   navigate(`anime/${anime.name}`)
                 }}>
