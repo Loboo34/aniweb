@@ -8,11 +8,11 @@ import { Link, useNavigate } from "react-router-dom";
 const Card = (props) => {
   const navigate = useNavigate();
   return (
-    <div className=" cardcontainer">
+    <div className=" cardcontainer md:grid md:grid-cols-4 pl-4 gap-y-3-3 w-full">
       {props.animeData.map((anime) => (
       
         <div
-          className="pb-6 relative md:h-[320px]  h-[300px]   text-white container card "
+          className="pb-8 relative md:h-[330px] h-[300px]    text-white container card "
            onClick={() => {
             navigate(`/anime/${anime.name}`);
          }} key={anime.id}
@@ -20,7 +20,7 @@ const Card = (props) => {
           <img
             src={anime.cardpic}
             alt={anime.name}
-            className=" h-[260px] w-[100%]"
+            className=" h-[280px] w-[100%]"
           />
           <h1>{anime.name}</h1>
           <span className=" text-sm pb-3 text-gray-500">sub | dub</span>

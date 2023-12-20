@@ -8,7 +8,7 @@ const Genretbl = () => {
      const handleShowAllGenre = () => {
        setShowAllGenre((prevState) => !prevState);
      };
-      const truncatedGenre = GenreData.slice(0, 25);
+      const truncatedGenre = GenreData.slice(0, 24);
       const navigate = useNavigate();
   return (
     <div className=" max-md:pt-4">
@@ -33,7 +33,7 @@ const Genretbl = () => {
         <div className=" absolute bottom-2 w-full flex justify-center">
           {!showAllGenre && (
             <button
-              className=" text-slate-200 text-[1.2rem] bg-slate-600 pl-10 pr-10 cursor-pointer"
+              className=" text-slate-200 text-[1.2rem] bg-slate-600 hover:bg-slate-500 w-[90%] cursor-pointer"
               onClick={handleShowAllGenre}
             >
               {showAllGenre ? "show less" : "show more"}
@@ -41,7 +41,7 @@ const Genretbl = () => {
           )}
           {showAllGenre && (
             <button
-              className=" text-slate-200 text-[1.2rem] bg-slate-600 pl-12 pr-12 cursor-pointer"
+              className=" text-slate-200 text-[1.2rem] bg-slate-600 hover:bg-slate-500 w-[90%] cursor-pointer"
               onClick={handleShowAllGenre}
             >
               {showAllGenre ? "show less" : "show more"}

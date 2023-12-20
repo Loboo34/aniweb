@@ -19,19 +19,19 @@ const Popular = () => {
  
   return (
     <div className=" bg-[#000000] pt-[55px]">
-      <div className=" md:w-full md:flex ">
-        <div className=" md:w-9/12 w-full">
+      <div className=" md:w-full lg:flex ">
+        <div className=" lg:w-9/12 w-full">
           <h1 className=" text-[#00a2ffe7]  pb-4 pl-2 md:text-[2.2rem] text-[1.4rem] font-semibold">
             Most Popular
           </h1>
           <Card animeData={animeData} />
         </div>
-        <div className="  md:w-3/12 w-[100%] ">
+        <div className="  lg:w-3/12 w-[100%] ">
           {" "}
           <>
-            <Genretbl />
+            <TopOfWeek />
           </>
-          <TopOfWeek />
+          <Genretbl />
         </div>
       </div>
     </div>

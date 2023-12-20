@@ -33,46 +33,67 @@ const Sections = () => {
       description: "",
     },
     {
-      id:4,
+      id: 4,
       name: "Must watch",
       description: "",
     },
   ];
   return (
-    <div className="pb-6 md:pl-10  md:pr-2 overflow-hidden">
+    <div className="pb-6 md:pl-10  md:pr-2 overflow-hidden w-full">
       {secTitle.map((title) => (
         <div className=" pb-3" key={title.id}>
           <h1 className=" text-[#00a2ff] text-[24px]  pb-4 font-semibold ">
             {title.name}
           </h1>
-          <Swiper
-            style={{
-              "--swiper-navigation-color": "blue",
-              "--swiper-pagination-color": "white",
-            }}
-            slidesPerView={5}
-            spaceBetween={20}
-            // grabCursor={true}
-            // pagination={{
-            //   clickable: true,
-            // }}
-            keyboard={{
-              enabled: true,
-            }}
-            navigation={true}
-            modules={[Pagination, Navigation, Keyboard]}
-            className="mySwiper  pb-11"
-          >
-            <div className=" flex">
-              {animeData.map((anime) => (
-                
+          <div className=" w-full">
+            <Swiper
+              style={{
+                "--swiper-navigation-color": "blue",
+                "--swiper-pagination-color": "white",
+              }}
+              breakpoints={{
+                480: {
+                  slidesPerView: 2,
+                },
+                768: {
+                  spaceBetween: 20,
+                  slidesPerView: 5,
+                },
+              }}
+              // breakpoints={{
+              //   // when window width is >= 640px
+              //   60: {
+              //     width: 640,
+              //     slidesPerView: 3,
+              //   },
+              //   // when window width is >= 768px
+              //   768: {
+              //     width: 768,
+              //     slidesPerView: 4,
+              //   },
+              // }}
+              // grabCursor={true}
+              // pagination={{
+              //   clickable: true,
+              // }}
+              slidesPerView={2}
+              spaceBetween={2}
+              keyboard={{
+                enabled: true,
+              }}
+              navigation={true}
+              modules={[Pagination, Navigation, Keyboard]}
+              className="mySwiper  pb-11"
+            >
+              <div className=" w-full">
+                {animeData.map((anime) => (
                   <SwiperSlide key={anime.id}>
                     <Link to={`anime/${anime.name}`}>
                       <div className="text-white relative cursor-pointer container h-[100%]">
                         <img
                           src={anime.cardpic}
                           alt={anime.name}
-                          className=" md:h-[300px] h-[200px] md:w-[250px] w-[100px]"
+                          className=" md:h-[300px] h-[200px] md:w-[250px] w-[180px]"
                         />
                         <h1 className=" text-xs md:text-[1rem]">
                           {anime.name}
@@ -120,10 +141,10 @@ const Sections = () => {
                       </div>
                     </Link>
                   </SwiperSlide>
-              
-              ))}
-            </div>
-          </Swiper>
+                ))}
+              </div>
+            </Swiper>
+          </div>
         </div>
       ))}
     </div>
