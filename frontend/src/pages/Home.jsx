@@ -11,7 +11,7 @@ import Footer from "../components/Footer/Footer";
 const Home = () => {
  
   return (
-    <div className=" relativ w-[100%]">
+    <div className=" relativ w-full">
       <CurrenAiring />
       <Infoblocks />
       <Sections />

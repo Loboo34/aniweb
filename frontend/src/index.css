@@ -113,4 +113,7 @@ opacity: 1;
 .swiper-container {
   width: 480px;
 }
-
+.active{
+  background-color: #00a2ffe7;
+  
+}

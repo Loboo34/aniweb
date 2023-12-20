@@ -118,6 +118,7 @@ const navigate = useNavigate()
           breakpoints={{
             480: {
               slidesPerView: 2,
+              spaceBetween: 2,
             },
             768: {
               spaceBetween: 20,

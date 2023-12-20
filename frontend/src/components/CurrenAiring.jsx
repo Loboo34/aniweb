@@ -20,7 +20,7 @@ const CurrenAiring = () => {
   const swiperNavPrevRef = useRef(null);
 
   return (
-    <div className=" pt-[60px] pb-4  w-screen relative flex justify-center">
+    <div className=" pt-[60px] pb-4 w-full relative flex items-center justify-center">
       {" "}
       <Swiper
         spaceBetween={30}
@@ -49,7 +49,7 @@ const CurrenAiring = () => {
       >
         {animeData.map((anime) => (
           <SwiperSlide key={anime.id}>
-            <div className=" relative md:h-[500px] h-[300px] max-md:w-[100%] flex bg-black  airing">
+            <div className=" relative md:h-[500px] h-[250px] max-md:w-full flex bg-black  airing">
               {/* style={{ backgroundImage: `url(${anime.img})` }} */}
               <img
                 src={anime.img}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, NavLink, useParams } from "react-router-dom";
 import footerLinks from "../components/Footer/FooterLinks";
 import Card from "../components/Card";
 import animeData from "../AnimeData";
@@ -17,11 +17,14 @@ const AZlist = () => {
       </h1>
       <div className=" flex pb-10  flex-wrap gap-4">
         {footerLinks.map((link) => (
-          <Link to={`/az-list/${link.name}`}>
-            <h1 className=" text-[1.3rem] pt-1 pb-1 cursor-deafult  text-white pl-2 pr-2 rounded mr-2 bg-gray-600 hover:bg-pink-500 font-medium">
-              {link.name}
-            </h1>
-          </Link>
+          <NavLink
+            to={`/az-list/${link.name}`}
+            activeClassName="active"
+            className={`text-[1.3rem] pt-1 pb-1 cursor-deafult  text-white pl-2 pr-2 rounded mr-2 bg-gray-600  font-medium 
+            `}
+          >
+            {link.name}
+          </NavLink>
         ))}
       </div>
       <div className="">

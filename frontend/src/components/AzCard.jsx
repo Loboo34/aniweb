@@ -5,10 +5,10 @@ import { faPlay, faAdd } from "@fortawesome/free-solid-svg-icons";
 import { Link } from 'react-router-dom';
 const AzCard = (props) => {
   return (
-    <div className=" flex flex-wrap gap-3 relative pb-8">
+    <div className=" cardcontainer md:gid md:grid-cols-4 relative pb-8">
       {props.animeData.map((anime) => (
         <Link to={`/anime/${anime.name}`}>
-        <div className=" w-[300px] h-[380px] mb-3 relative container ">
+        <div className="  h-[380px] mb-3 relative container ">
           <img
             src={anime.cardpic}
             alt={anime.name}
