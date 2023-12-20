@@ -60,18 +60,7 @@ const Sections = () => {
                   slidesPerView: 5,
                 },
               }}
-              // breakpoints={{
-              //   // when window width is >= 640px
-              //   60: {
-              //     width: 640,
-              //     slidesPerView: 3,
-              //   },
-              //   // when window width is >= 768px
-              //   768: {
-              //     width: 768,
-              //     slidesPerView: 4,
-              //   },
-              // }}
+             
               // grabCursor={true}
               // pagination={{
               //   clickable: true,
