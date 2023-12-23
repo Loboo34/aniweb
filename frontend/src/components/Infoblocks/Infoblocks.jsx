@@ -24,7 +24,7 @@ const Infoblocks = () => {
                 <img
                   src={anime.cardpic}
                   alt="pic"
-                  className=" pl-1 mr-1  h-[80px]"
+                  className=" pl-1  h-[80px]"
                   onClick={() => {
                     navigate(`anime/${anime.name}`);
                   }}

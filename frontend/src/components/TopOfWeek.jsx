@@ -12,14 +12,14 @@ const TopOfWeek = () => {
       </h1>
       <div className="bg-gray-900 pl-4 pt-2 pb-2">
         {topTen.map((anime) => (
-          <div className=" flex pb-2 space-x-3 top" key={anime.id}>
-            <span className="text-[#00a2ff] text-[1.6rem]  underline-offset-8 cursor-deafult">
+          <div className=" flex pb-2 space-x-3 top w-full" key={anime.id}>
+            <span className="text-[#00a2ff] pt-4 text-[1.6rem]  underline-offset-8 cursor-deafult">
              {anime.No}
             </span>
             <img
               src={anime.cardpic}
               alt={anime.name}
-              className=" w-[80px] h-[90px]"
+              className=" max-w-[200px] h-[90px]"
               onClick={() => {
                 navigate(`/anime/${anime.name}`);
               }}
