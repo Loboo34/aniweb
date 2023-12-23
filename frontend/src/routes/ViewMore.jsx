@@ -17,7 +17,7 @@ const ViewMore = () => {
   
  
   return (
-    <div className=" pt-[60px] bg-[#000000] pr-5">
+    <div className=" pt-[60px] bg-[#000000] pr-1 pl-1">
       <div className="lg:flex w-full md:pl-2">
         <div className=" lg:w-9/12 w-full">
           <h1 className="text-[#00a2ffe7]  pb-4 text-[2.2rem] pl-4 font-semibold">

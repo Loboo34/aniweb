@@ -61,7 +61,6 @@ const Sections = () => {
                   slidesPerView: 5,
                 },
               }}
-             
               // grabCursor={true}
               // pagination={{
               //   clickable: true,
@@ -73,7 +72,7 @@ const Sections = () => {
               }}
               navigation={true}
               modules={[Pagination, Navigation, Keyboard]}
-              className="mySwiper  pb-2 md:pb-10"
+              className="mySwiper  pb-2 md:pb-6"
             >
               <div className=" w-full">
                 {animeData.map((anime) => (
@@ -81,10 +80,10 @@ const Sections = () => {
                     <Link to={`anime/${anime.name}`}>
                       <div className="text-white relative cursor-pointer container h-[100%]">
                         <img
-                        loading="lazy"
+                          loading="lazy"
                           src={anime.cardpic}
                           alt={anime.name}
-                          className=" md:h-[300px] h-[230px] md:w-[250px] w-[195px]"
+                          className=" w-full md:h-[300px] h-[230px]"
                         />
                         <h1 className=" text-xs md:text-[1rem]">
                           {anime.name}

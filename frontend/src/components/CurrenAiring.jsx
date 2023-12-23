@@ -39,7 +39,7 @@ const CurrenAiring = () => {
           nextEl: swiperNavNextRef.current,
         }}
         modules={[Pagination, Navigation, Autoplay, EffectFade]}
-        className="mySwiper w-[90%] justify-center"
+        className="mySwiper w-[90%] justify-center relative  flex   airing md:h-[500px] h-[250px]"
         onInit={(swiper) => {
           swiper.params.navigation.prevEl = swiperNavPrevRef.current;
           swiper.params.navigation.nextEl = swiperNavNextRef.current;
@@ -49,13 +49,8 @@ const CurrenAiring = () => {
       >
         {animeData.map((anime) => (
           <SwiperSlide key={anime.id}>
-            <div className=" relative md:h-[500px] h-[250px] max-md:w-full flex bg-black  airing">
-              {/* style={{ backgroundImage: `url(${anime.img})` }} */}
-              <img
-                src={anime.img}
-                alt=""
-                className="  h-[100%] w-[100%] mask1"
-              />
+            <div className="bg-black ">
+              <img src={anime.img} alt="" className=" w-full h-fit mask1" />
               <div className=" text-white absolute md:top-[10%] bottom-[5%] left-0 z-10 md:pl-4 ">
                 <h1 className=" md:text-[30px] text-[.9rem] font-black md:pb-6 pb-2">
                   {anime.name}
