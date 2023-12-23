@@ -10,7 +10,7 @@ const TopOfWeek = () => {
       <h1 className=" text-[#00a2ff] text-[24px]  pb-4 pl-4 font-semibold">
         Top 10 Of The week
       </h1>
-      <div className="bg-gray-900 pl-4 pt-2 pb-2">
+      <div className="bg-gray-900 pl-4 pt-2 pb-2 flex flex-col">
         {topTen.map((anime) => (
           <div className=" flex pb-2 space-x-3 top w-full" key={anime.id}>
             <span className="text-[#00a2ff] pt-4 text-[1.6rem]  underline-offset-8 cursor-deafult">
