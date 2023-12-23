@@ -93,7 +93,9 @@ opacity: 1;
 }
 
 .gc{
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
 }
 .top:hover span{
   color: white;

@@ -15,8 +15,8 @@ const Genretbl = () => {
       <h1 className="text-[#00a2ffe7]  md:pb-4 pb-2 md:text-[2.2rem] text-[1.4rem] pl-4 font-semibold">
         Genre
       </h1>
-      <div className="md:bg-gray-900 rounded-md mr-4 ml-4 pb-[50px] relative">
-        <div className="  md:grid md:grid-cols-3  md:pl-3  gc ">
+      <div className="md:bg-gray-900 rounded-md md:mr-4 md:ml-4 mr-2 ml-2 pb-[50px] relative">
+        <div className="  md:grid md:grid-cols-3 pl-3   md:pl-3  gc ">
           {truncatedGenre.map((genre) => (
             <div className="p-1" key={genre.id}>
               <span
@@ -33,7 +33,7 @@ const Genretbl = () => {
         <div className=" absolute bottom-2 w-full flex justify-center">
           {!showAllGenre && (
             <button
-              className=" text-slate-200 text-[1.2rem] bg-slate-600 hover:bg-slate-500 w-[90%] cursor-pointer"
+              className=" text-slate-200 text-[1.2rem] bg-slate-600 hover:bg-slate-500 w-[95%] cursor-pointer"
               onClick={handleShowAllGenre}
             >
               {showAllGenre ? "show less" : "show more"}
@@ -49,10 +49,10 @@ const Genretbl = () => {
           )}
         </div>
         {showAllGenre && (
-          <div className=" md:bg-gray-900 grid md:grid-cols-3 md:pl-3 gc   ">
+          <div className=" md:bg-gray-900 pl-3 gc   ">
             {GenreData.filter((genre) => !truncatedGenre.includes(genre)).map(
               (genre) => (
-                <div className="p-1">
+                <div className="p-1" key={genre.id}>
                   <span
                     className=" text-white text-[.9rem] hover:bg-slate-500 max-md:bg-slate-600 pt-1 pb-1 pr-2 pl-2 cursor-default"
                     onClick={() => {

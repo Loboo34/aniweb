@@ -7,6 +7,7 @@ import GenreData from "../components/Genre/GenreData";
 import { useNavigate } from "react-router-dom";
 import Genretbl from "../components/Genre/Genretbl";
 import TopOfWeek from "../components/TopOfWeek";
+import Footer from "../components/Footer/Footer";
 
 const Popular = () => {
   // const titlePage = [
@@ -18,8 +19,8 @@ const Popular = () => {
   // ];
  
   return (
-    <div className=" bg-[#000000] pt-[55px]">
-      <div className=" md:w-full lg:flex ">
+    <>
+      <div className=" md:w-full lg:flex bg-[#000000] pt-[55px] ">
         <div className=" lg:w-9/12 w-full">
           <h1 className=" text-[#00a2ffe7]  pb-4 pl-2 md:text-[2.2rem] text-[1.4rem] font-semibold">
             Most Popular
@@ -29,12 +30,13 @@ const Popular = () => {
         <div className="  lg:w-3/12 w-[100%] ">
           {" "}
           <>
-            <TopOfWeek />
+            <Genretbl />
           </>
-          <Genretbl />
+          <TopOfWeek />
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 

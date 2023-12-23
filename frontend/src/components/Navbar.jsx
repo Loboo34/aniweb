@@ -57,6 +57,9 @@ const Navbar = ({ toggle }) => {
         <FontAwesomeIcon
           icon={faSearch}
           className=" pr-2 text-[1.3rem] text-white"
+         onClick={() => {
+          window.location.pathname = "search"
+         }}
         />
         {user && (
           <div>

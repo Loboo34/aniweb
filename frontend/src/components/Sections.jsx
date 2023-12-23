@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy } from "react";
 import animeData from "../AnimeData";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -38,11 +38,12 @@ const Sections = () => {
       description: "",
     },
   ];
+  const some = lazy()
   return (
-    <div className="pb-6 md:pl-10  md:pr-2 overflow-hidden w-full">
+    <div className=" md:pl-6  md:pr-2 overflow-hidden w-full">
       {secTitle.map((title) => (
-        <div className=" pb-3" key={title.id}>
-          <h1 className=" text-[#00a2ff] text-[24px]  pb-4 font-semibold ">
+        <div key={title.id}>
+          <h1 className=" text-[#00a2ff] text-[24px]  md:pb-4 pb-3 font-semibold ">
             {title.name}
           </h1>
           <div className=" w-full">
@@ -66,13 +67,13 @@ const Sections = () => {
               //   clickable: true,
               // }}
               slidesPerView={2}
-              spaceBetween={2}
+              spaceBetween={1}
               keyboard={{
                 enabled: true,
               }}
               navigation={true}
               modules={[Pagination, Navigation, Keyboard]}
-              className="mySwiper  pb-11"
+              className="mySwiper  pb-2 md:pb-10"
             >
               <div className=" w-full">
                 {animeData.map((anime) => (
@@ -80,9 +81,10 @@ const Sections = () => {
                     <Link to={`anime/${anime.name}`}>
                       <div className="text-white relative cursor-pointer container h-[100%]">
                         <img
+                        loading="lazy"
                           src={anime.cardpic}
                           alt={anime.name}
-                          className=" md:h-[300px] h-[200px] md:w-[250px] w-[180px]"
+                          className=" md:h-[300px] h-[230px] md:w-[250px] w-[195px]"
                         />
                         <h1 className=" text-xs md:text-[1rem]">
                           {anime.name}

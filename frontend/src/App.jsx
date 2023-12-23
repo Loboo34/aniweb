@@ -14,6 +14,7 @@ import Tv from "./pages/Tv";
 import Series from "./pages/Series";
 import Movies from "./pages/Movies";
 import AZlist from "./pages/AZ-list";
+import Search from "./pages/Search";
 //import animeData from "./AnimeData";
 
 const router = createBrowserRouter([
@@ -48,8 +49,12 @@ const router = createBrowserRouter([
   },
   {
     path: "/az-list/:name",
-    element: <AZlist />
-  }
+    element: <AZlist />,
+  },
+  {
+    path: "search",
+    element: <Search />,
+  },
 ]);
   
 
@@ -59,7 +64,7 @@ const App = () => {
     SetIsOpen(!isOpen);
   };
   return (
-    <div className=" w-full relative overflow-hidden bg-[#000000]">
+    <div className=" w-full  relative overflow-hidden bg-[#000000]">
       <Navbar toggle={toggle} />
       <Sidebar isOpen={isOpen} toggle={toggle} />
       <RouterProvider router={router} />
