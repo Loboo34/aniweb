@@ -66,7 +66,7 @@ const Sections = () => {
               //   clickable: true,
               // }}
               slidesPerView={2}
-              spaceBetween={1}
+              spaceBetween={10}
               keyboard={{
                 enabled: true,
               }}
@@ -102,7 +102,7 @@ const Sections = () => {
                             <p>No of seasons</p>
                             <p>No of Episodes</p>
                           </>
-                          <p className=" pt-4 italic text-[1rem]">
+                          <p className=" pt-4 italic md:text-[1rem] text-[.7rem] pr-2">
                             Lorem, ipsum dolor sit amet consectetur adipisicing
                             elit. Ipsum impedit ut ex porro deserunt accusantium
                             delectus.{" "}

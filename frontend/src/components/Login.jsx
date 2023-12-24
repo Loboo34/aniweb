@@ -13,7 +13,7 @@ const { loginUser, isLoading } = useLogin()
   return (
     <div className=" ">
       <div
-        className=" pl-10 w-[100%] h-[100%] text-white pb-10 log"
+        className=" pl-10 w-[100%] h-[100%] text-white pt-4 pb-10 log"
         style={{ backgroundImage: "url(/img/slimebg.jpg)" }}
       >
         <h1 className="  text-[#00a2ff] text-2xl pb-6  ">Welcome Back</h1>

@@ -33,7 +33,7 @@ const Card = (props) => {
               <p>No of seasons</p>
               <p>No of Episodes</p>
             </>
-            <p className=" pt-4 italic text-[.9rem] ">
+            <p className=" pt-4 italic md:text-[.9rem] text-[.7rem] ">
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum
               impedit ut ex porro deserunt accusantium delectus.{" "}
             </p>

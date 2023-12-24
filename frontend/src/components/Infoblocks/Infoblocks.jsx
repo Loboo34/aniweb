@@ -30,10 +30,11 @@ const Infoblocks = () => {
                   }}
                 />
                 <div className=" text-white">
-                  <p className=" text-[.8rem] font-semibold text-left ">
+                  <p className=" text-[.9rem] font-semibold text-left ">
                     {anime.name}
                   </p>
-                  <p className=" text-[16px]">no of ep: {anime.noEp}</p>
+                  <p className=" text-[.8rem]">no of ep: {anime.noEp}</p>
+                  <span className=" text-[.8rem]">Sub | Dub</span>
                 </div>
               </div>
               <hr className=" text-white pb-2 w-[80%] opacity-30" />

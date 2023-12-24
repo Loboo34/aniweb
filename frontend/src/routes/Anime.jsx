@@ -166,7 +166,7 @@ const navigate = useNavigate()
                       <p>No of seasons</p>
                       <p>No of Episodes</p>
                     </>
-                    <p className=" pt-4 italic">
+                    <p className=" pt-4 italic text-[.7rem] md:text-[1rem]">
                       Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                       Ipsum impedit ut ex porro deserunt accusantium delectus.{" "}
                     </p>

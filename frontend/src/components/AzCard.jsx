@@ -21,7 +21,7 @@ const AzCard = (props) => {
             sub | dub
           </span>
           <div
-            className=" pl-3 pt-2 absolute top-0 left-0 h-[100%] text-white info"
+            className=" md:pl-3 pl-2 pt-2 absolute top-0 left-0 h-[100%] text-white info"
             style={{ backgroundImage: `url(${anime.cardpic})` }}
           >
             <h1 className="pb-2 text-[1rem] font-bold text-[#00a2ff]">
@@ -30,7 +30,7 @@ const AzCard = (props) => {
             <p>No of seasons</p>
             <p>No of Episodes</p>
 
-            <p className=" pt-4 italic text-[1rem]">
+            <p className=" pt-4 italic md:text-[1rem] text-[.7rem]">
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum
               impedit ut ex porro deserunt accusantium delectus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, quasi aliquam culpa nostrum explicabo repudiandae debitis minus voluptates eaque sequi ex fuga. Nesciunt, esse distinctio.{" "}
             </p>

@@ -1,44 +1,42 @@
-import React, { useState } from 'react'
-import { useRegister } from '../hooks/useRegister'
+import React, { useState } from "react";
+import { useRegister } from "../hooks/useRegister";
 
 const Register = (props) => {
-// const [username, setUserame] = useState("");
-// const [email, setEmail] = useState("");
-// const [password, setPassword] = useState("");
- const { registerUser, error } = useRegister();
-const [formData, setFormData] = useState({
-  username: "",
-  email: "",
-  password: "",
-});
+  // const [username, setUserame] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  const { registerUser, error } = useRegister();
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
 
- const handleInputChange = (e) => {
-   const { name, value } = e.target;
-   setFormData({
-     ...formData,
-     [name]: value,
-   });
- };
-
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { username, email, password } = formData;
-    try{ 
-   await registerUser(username, email, password);}
-    catch(error){
-     console.log("Registration Error:", error);
+    try {
+      await registerUser(username, email, password);
+    } catch (error) {
+      console.log("Registration Error:", error);
     }
   };
 
-//    const handleChange = (e) => {
-// console.log(e.target)
-// const {username, value} = e.target
-// setFormValues({ ...formValues, [username]: value})
-// console.log(formValues)
-//    }
+  //    const handleChange = (e) => {
+  // console.log(e.target)
+  // const {username, value} = e.target
+  // setFormValues({ ...formValues, [username]: value})
+  // console.log(formValues)
+  //    }
 
-  
   return (
     <div className="   ">
       {/* <pre className=' text-white'>{JSON.stringify(formValues, undefined,2)}</pre> */}
@@ -106,6 +104,6 @@ const [formData, setFormData] = useState({
       </div>
     </div>
   );
-}
+};
 
-export default Register
+export default Register;

@@ -105,7 +105,6 @@ row-gap: 2rem;
 .log{
   background-size: cover;
  background-blend-mode: multiply;
- 
  background-color: rgba(0, 0, 0, 0.922);
 }
 .popup-overlay {
