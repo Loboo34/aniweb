@@ -39,7 +39,7 @@ const CurrenAiring = () => {
           nextEl: swiperNavNextRef.current,
         }}
         modules={[Pagination, Navigation, Autoplay, EffectFade]}
-        className="mySwiper w-[90%]     "
+        className="mySwiper md:w-[95%] w-full      "
         onInit={(swiper) => {
           swiper.params.navigation.prevEl = swiperNavPrevRef.current;
           swiper.params.navigation.nextEl = swiperNavNextRef.current;
@@ -51,7 +51,7 @@ const CurrenAiring = () => {
           <SwiperSlide key={anime.id}>
             <div className="bg-black justify-center relative md:h-[500px] h-[250px]  flex airing">
               <img src={anime.img} alt="" className=" w-full  mask1" />
-              <div className=" text-white absolute md:top-[10%] bottom-[5%] left-0 z-10 md:pl-4 ">
+              <div className=" text-white absolute md:top-[10%] bottom-[5%] left-0 z-10 md:pl-4 pl-2 ">
                 <h1 className=" md:text-[30px] text-[.9rem] font-black md:pb-6 pb-2">
                   {anime.name}
                 </h1>
@@ -82,13 +82,13 @@ const CurrenAiring = () => {
         ))}
       </Swiper>
       <div
-        className=" absolute md:left-[35px] left-[5px] md:top-[50%] max-md:hidden top-[55%] text-white z-10 cursor-pointer text-[20px] font-semibold"
+        className=" absolute md:left-[28px] left-[5px] md:top-[50%] max-md:hidden top-[55%] text-white z-10 cursor-pointer text-[20px] font-semibold"
         ref={swiperNavPrevRef}
       >
         <FontAwesomeIcon icon={faAngleLeft} />
       </div>
       <div
-        className=" absolute md:right-[35px] right-[5px] md:top-[50%] max-md:hidden top-[55%] z-10 text-white cursor-pointer text-[20px] font-semibold "
+        className=" absolute md:right-[28px] right-[5px] md:top-[50%] max-md:hidden top-[55%] z-10 text-white cursor-pointer text-[20px] font-semibold "
         ref={swiperNavNextRef}
       >
         <FontAwesomeIcon icon={faAngleRight} />
