@@ -23,7 +23,7 @@ const Movies = () => {
             <TopOfWeek />
         </div>
       </div>
-      <Footer />
+     
     </>
   );
 }

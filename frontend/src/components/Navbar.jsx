@@ -31,10 +31,16 @@ const Navbar = ({ toggle }) => {
         <img
           src="/img/logo1.png"
           alt="logo"
-          className=" md:w-[50px] w-[30px]  h-auto "
+          className=" md:w-[50px] w-[30px]  h-auto"
         />
+
         <>
-          <p className=" md:text-[22px] text-[1rem] hover:text-white cursor-pointer ">
+          <p
+            className=" md:text-[22px] text-[1rem] hover:text-white cursor-pointer "
+            onClick={() => {
+              window.location.pathname = "/";
+            }}
+          >
             Slurp
           </p>
         </>
@@ -57,9 +63,9 @@ const Navbar = ({ toggle }) => {
         <FontAwesomeIcon
           icon={faSearch}
           className=" pr-2 text-[1.3rem] text-white"
-         onClick={() => {
-          window.location.pathname = "search"
-         }}
+          onClick={() => {
+            window.location.pathname = "search";
+          }}
         />
         {user && (
           <div>

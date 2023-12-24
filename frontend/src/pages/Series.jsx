@@ -23,7 +23,7 @@ const Series = () => {
             <TopOfWeek />
         </div>
       </div>
-      <Footer />
+     
     </>
   );
 }

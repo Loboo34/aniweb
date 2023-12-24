@@ -35,7 +35,7 @@ const Popular = () => {
           <TopOfWeek />
         </div>
       </div>
-      <Footer />
+     
     </>
   );
 };

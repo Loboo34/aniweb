@@ -21,7 +21,7 @@ const AZlist = () => {
             to={`/az-list/${link.name}`}
             activeClassName="active"
             className={`text-[1.3rem] pt-1 pb-1 cursor-deafult  text-white pl-2 pr-2 rounded mr-2 bg-gray-600  font-medium 
-            `}
+            `} key={link.id}
           >
             {link.name}
           </NavLink>
@@ -30,7 +30,7 @@ const AZlist = () => {
       <div className="">
         <AzCard animeData={filter} />
       </div>
-      <Footer />
+    
     </div>
   );
 };

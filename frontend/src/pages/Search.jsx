@@ -12,7 +12,7 @@ const Search = () => {
           <input type="search" placeholder='Search...' className=" md:w-[50%] w-full h-[30px]  pl-2 pt-1 pb-1 rounded" />
         </div>
       </div>
-      <Footer />
+     
     </main>
   );
 }

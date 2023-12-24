@@ -2,7 +2,7 @@ import React from "react";
 import GenreData from "./Genre/GenreData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 //import { Link, useNavigate } from "react-router-dom";
 
 const Sidebar = ({ isOpen, toggle }) => {
@@ -43,6 +43,7 @@ const Sidebar = ({ isOpen, toggle }) => {
       path: "/",
     },
   ];
+  const navigate = useNavigate()
   const filteredData = GenreData.slice(0, 4)
   return (
     <div
@@ -66,8 +67,8 @@ const Sidebar = ({ isOpen, toggle }) => {
               // onClick={() => {
               //   navigate(`link/${link.name}`)
               // }}
-               onClick={() => {
-                 window.location.pathname = link.path;
+              onClick={() => {
+                window.location.pathname = link.path;
               }}
             >
               {link.name}
@@ -80,7 +81,13 @@ const Sidebar = ({ isOpen, toggle }) => {
         </h1>
         <div className=" grid grid-cols-2">
           {filteredData.map((gen) => (
-            <p  className=" text-[16px]" key={gen.id}>
+            <p
+              className=" text-[1rem] hover:text-[#00a2ff] cursor-pointer"
+              key={gen.id}
+              onClick={() => {
+                navigate(`genre/${gen.name}`);
+              }}
+            >
               {gen.name}
             </p>
           ))}

@@ -19,7 +19,7 @@ const Infoblocks = () => {
         >
           <h1 className=" text-[#00a2ff] pb-4 text-[20px]">{block.title}</h1>
           {animeInfo.map((anime) => (
-            <div className=" flex flex-col ">
+            <div className=" flex flex-col " key={anime.id}>
               <div className=" flex space-x-2 pb-2  w-full" key={anime.id}>
                 <img
                   src={anime.cardpic}

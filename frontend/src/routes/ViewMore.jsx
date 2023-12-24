@@ -34,7 +34,7 @@ const ViewMore = () => {
          </>
         </div>
       </div>
-      <Footer />
+    
     </div>
   );
 };

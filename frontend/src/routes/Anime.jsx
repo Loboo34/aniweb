@@ -33,10 +33,11 @@ const navigate = useNavigate()
   return (
     <div className=" bg-[#000000] pt-[60px] ">
       <div
-        className="  h-[200px] flex justify-center alt"
+        className="  h-[250px] flex justify-center alt"
         style={{
           backgroundImage: `url(${anime.img})`,
           backgroundSize: "cover",
+          width: "100%",
           // filter: "blur(20px)",
         }}
       >
@@ -139,8 +140,8 @@ const navigate = useNavigate()
           className="mySwiper  pb-11 md:pl-8 pr-8"
         >
           {animeData.map((anime) => (
-            <SwiperSlide>
-              <Link to={`anime/${anime.name}`} key={anime.id}>
+            <SwiperSlide key={anime.id}>
+              <Link to={`/anime/${anime.name}`}>
                 <div
                   className="text-white relative cursor-pointer container h-[100%]"
                   onClick={() => {
@@ -196,7 +197,6 @@ const navigate = useNavigate()
           ))}
         </Swiper>
       </div>
-      <Footer />
     </div>
   );
 };

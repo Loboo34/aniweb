@@ -15,7 +15,7 @@ const Home = () => {
       <CurrenAiring />
       <Infoblocks />
       <Sections />
-     <Footer />
+    
     </div>
   );
 };
