@@ -67,7 +67,7 @@ const Navbar = ({ toggle }) => {
             window.location.pathname = "search";
           }}
         />
-        {user && (
+        {!user && (
           <div>
             <div className=" w-12 h-auto rounded-full  flex justify-center items-center">
               <img
@@ -81,7 +81,7 @@ const Navbar = ({ toggle }) => {
             <button onClick={handleLogout}>Log Out</button> */}
           </div>
         )}
-        {!user && (
+        {/* {!user && (
           <div>
             <button
               className=" text-[18px] bg-[#00a2ff] text-black pl-2 pr-2 pt-1 pb-1 rounded-md font-bold"
@@ -107,7 +107,7 @@ const Navbar = ({ toggle }) => {
               </div>
             </Popup>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );

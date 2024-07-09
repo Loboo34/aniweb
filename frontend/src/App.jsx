@@ -18,7 +18,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer/Footer";
 import Sidebar from "./components/Sidebar";
 import Genre from "./pages/Genre";
-import Tv from "./pages/Tv";
+//import Tv from "./pages/Tv";
 import Series from "./pages/Series";
 import Movies from "./pages/Movies";
 import AZlist from "./pages/AZ-list";
