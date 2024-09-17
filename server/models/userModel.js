@@ -15,7 +15,12 @@ const userSchema = mongoose.Schema(
       type: String,
       required: [true, "Please add the user password"],
     },
+    watchlist: {
+      type: Array,
+      default: [],
+    },
   },
+
   {
     timestamps: true,
   }

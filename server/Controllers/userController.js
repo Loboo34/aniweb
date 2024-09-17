@@ -69,12 +69,53 @@ const loginUser = asyncHandler(async (req, res) => {
   res.json({ message: "Loged in" });
 });
 
+//get all users
+const getUsers = asyncHandler(async (req, res) => {
+  const users = await User.find({});
+  if (!users) {
+    res.status(404);
+    throw new Error("No users found");
+  }
+  res.status(200).json(users);
+});
+
+//get current user info
 //@desc current user
 //@route Post /api/users/current
 //access private
 const currentUser = asyncHandler(async (req, res) => {
   res.json(req.user);
-  //res.json({ message: "Current user info" });
+  res.json({ message: "Current user info" });
 });
 
-module.exports = { registerUser, loginUser, currentUser };
+
+
+//send anime to watchlist by id
+const sendToWatchlist = asyncHandler(async (req, res) => {
+  const animeId = req.params.id;
+  const user = await User.findById(req.user.id);
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
+  if (user.watchlist.includes(animeId)) {
+    res.status(404);
+    throw new Error("Anime already in watchlist");
+  }
+  user.watchlist.push(animeId);
+  await user.save();
+  res.status(200).json({ message: "Anime added to watchlist" });
+});
+
+//get user profile
+const getUserProfile = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user.id).select("-password");
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
+  res.status(200).json(user);
+});
+
+
+module.exports = { registerUser, loginUser, currentUser, getUsers, sendToWatchlist };
