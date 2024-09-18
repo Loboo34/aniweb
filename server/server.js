@@ -35,5 +35,5 @@ app.use("/api/user", require("./Routes/userRoutes"));
 //     console.log(err);
 //   });
 app.listen(process.env.PORT, () => {
-  console.log(" Node server running");
+  //console.log(" Node server running");
 });
