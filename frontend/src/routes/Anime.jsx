@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -18,16 +18,34 @@ import Footer from "../components/Footer/Footer";
 
 const Anime = () => {
    //const navigate = useNavigate();
-  const { name } = useParams();
- const anime = animeData.find((anime) => anime.name === name);
+  const { id } = useParams();
+//  const anime = animeData.find((anime) => anime.name === name);
 
-  if (!anime) {
-    return (
-      <p className=" pt-[56px] w-full h-full flex justify-center items-center">
-        Not Found
-      </p>
-    );
-  }
+//   if (!anime) {
+//     return (
+//       <p className=" pt-[56px] w-full h-full flex justify-center items-center">
+//         Not Found
+//       </p>
+//     );
+//   }
+const [anime, setAnime] = useState({})
+//const { synopsis} = anime
+
+  const getAnime = async (anime) => {
+    try {
+      const response = await fetch(`https://api.jikan.moe/v4/anime/${anime}`);
+      const data = await response.json();
+      setAnime(data.data);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getAnime(id);
+  }, []);
+
 const related = animeData.slice(0, 4)
 const navigate = useNavigate()
   return (
@@ -35,17 +53,17 @@ const navigate = useNavigate()
       <div
         className="  h-[250px] flex justify-center alt"
         style={{
-          backgroundImage: `url(${anime.img})`,
+          backgroundImage: `url(${anime.images?.jpg.image_url})`,
           backgroundSize: "cover",
           width: "100%",
           // filter: "blur(20px)",
         }}
       >
-        <img src={anime.img} alt={anime.name} className=" h-[100%]" />
+        <img src={anime.images?.jpg.large_image_url} alt={anime.title} className=" h-[100%]" />
       </div>
       <div className="grid md:grid-cols-2 md:pl-6 text-white pb-4 ">
         <div className="   pt-3 pl-4 pb-5">
-          <h1 className=" text-4xl pb-3 text-white">{anime.name}</h1>
+          <h1 className=" text-4xl pb-3 text-white">{anime.title}</h1>
 
           <div className="  flex space-x-2 pb-3 items-center">
             <span className="text-xl flex space-x-1 pr-1 ">
@@ -70,9 +88,9 @@ const navigate = useNavigate()
                 className=" hover:text-[#00a2ff] "
               />
             </span>
-            |<span>Average Rating:</span>
+            |<span>Average Rating:{anime.rating}</span>
           </div>
-          <p className=" text-base pb-3 text-gray-300">sub | dub . Tv</p>
+          <p className=" text-base pb-3 text-gray-300">sub | dub . {anime.type}</p>
           <p className=" pb-1 text-white">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate
             delectus consectetur, excepturi, ea tempora culpa, enim repellendus
@@ -94,7 +112,7 @@ const navigate = useNavigate()
           </div>
         </div>
         <div className=" flex flex-col justify-center items-center text-white max-md:hidden">
-          <img src={anime.img} alt="video" className=" w-[350px] pb-4" />
+          <img src={anime.trailer.images.maximum_image_url} alt="" className=" h-[200px] w-[350px] pb-4" />
           <span className=" text-[#00a2ff] text-xl border-2 border-[#00a2ff] pl-2 pr-2 cursor-pointer hover:text-[#00a2ffe7]">
             <FontAwesomeIcon icon={faPlay} className="pr-2" />
             Start Watching sn1 Ep1

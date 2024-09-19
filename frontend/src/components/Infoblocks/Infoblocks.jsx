@@ -5,11 +5,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 import myBlocks from "./myBlocks";
+import { useGlobalContext } from "../../context/GlobalProvider";
+
 
 const Infoblocks = () => {
   const navigate = useNavigate();
-  const animeInfo = animeData.slice(0, 4);
+ 
 
+  const {popularAnime} = useGlobalContext();
+  //console.log(global);
+ const animeInfo = popularAnime.slice(0, 4);
   return (
     <div className=" md:flex md:space-x-3 pb-5">
       {myBlocks.map((block) => (
@@ -19,21 +24,23 @@ const Infoblocks = () => {
         >
           <h1 className=" text-[#00a2ff] pb-4 text-[20px]">{block.title}</h1>
           {animeInfo.map((anime) => (
-            <div className=" flex flex-col " key={anime.id}>
-              <div className=" flex space-x-2 pb-2  w-full" key={anime.id}>
-                <img
-                  src={anime.cardpic}
-                  alt="pic"
-                  className=" pl-1  h-[80px]"
-                  onClick={() => {
-                    navigate(`anime/${anime.name}`);
-                  }}
-                />
+            <div className=" flex flex-col " key={anime.mal_id}>
+              <div className=" flex space-x-2 pb-2  w-full" key={anime.mal_id}>
+                <Link to={`/anime/${anime.mal_id}`}>
+                  <img
+                    src={anime.images.jpg.large_image_url}
+                    alt="pic"
+                    className=" pl-1  h-[80px]"
+                    // onClick={() => {
+                    //   navigate(`anime/${anime.title}`);
+                    // }}
+                  />
+                </Link>
                 <div className=" text-white">
                   <p className=" text-[.9rem] font-semibold text-left ">
-                    {anime.name}
+                    {anime.title}
                   </p>
-                  <p className=" text-[.8rem]">no of ep: {anime.noEp}</p>
+                  <p className=" text-[.8rem]">ep: {anime.episodes}</p>
                   <span className=" text-[.8rem]">Sub | Dub</span>
                 </div>
               </div>
