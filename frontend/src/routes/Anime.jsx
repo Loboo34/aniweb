@@ -59,11 +59,27 @@ const Anime = () => {
     }
   };
 
+  const [recommendations, setRecommendations] = useState([]);
+
+  const getRelated = async (anime) => {
+    try {
+      const response = await fetch(
+        `https://api.jikan.moe/v4/recommendations/anime`
+      );
+      const data = await response.json();
+      setRecommendations(data.data);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getAnime(id);
+    getRelated();
   }, []);
 
-  const related = animeData.slice(0, 4);
+  const related = recommendations.slice(0, 4);
   const navigate = useNavigate();
   return (
     <div className=" bg-[#000000] pt-[60px] ">
@@ -85,7 +101,7 @@ const Anime = () => {
       </div>
       <div className="grid md:grid-cols-2 md:pl-6 text-white pb-4 ">
         <div className="   pt-3 pl-4 pb-5">
-          <h1 className=" text-4xl pb-3 text-white">{title}</h1>
+          <h1 className=" text-4xl pb-3 text-white">{anime.title}</h1>
 
           <div className="  flex space-x-2 pb-3 items-center">
             <span className="text-xl flex space-x-1 pr-1 ">

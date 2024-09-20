@@ -1,5 +1,5 @@
 import React from "react";
-import animeData from "../AnimeData";
+//import animeData from "../AnimeData";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faAdd } from "@fortawesome/free-solid-svg-icons";
@@ -18,7 +18,7 @@ const Card = (props) => {
          }} key={anime.id}
         >
           <img
-            src={anime.cardpic}
+            src={anime.images?.jpg.large_image_url}
             alt={anime.name}
             className=" h-[95%] w-[100%]"
           />
@@ -29,7 +29,7 @@ const Card = (props) => {
             style={{ backgroundImage: `url(${anime.cardpic})` }}
           >
             <>
-              <h1 className="pb-2 text-[1rem] text-[#00a2ff]">{anime.name}</h1>
+              <h1 className="pb-2 text-[1rem] text-[#00a2ff]">{anime.title}</h1>
               <p>No of seasons</p>
               <p>No of Episodes</p>
             </>

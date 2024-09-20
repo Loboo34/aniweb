@@ -1,6 +1,6 @@
- import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import animeData from "../AnimeData"
+import animeData from "../AnimeData";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -10,35 +10,40 @@ import { Autoplay, Pagination, Navigation, EffectFade } from "swiper/modules";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  
-  faAngleRight, faAngleLeft, faPlay, faBookBookmark, faBookmark
+  faAngleRight,
+  faAngleLeft,
+  faPlay,
+  faBookBookmark,
+  faBookmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../context/GlobalProvider";
 
-
 const CurrenAiring = () => {
   const swiperNavNextRef = useRef(null);
   const swiperNavPrevRef = useRef(null);
-//const  {airingAnime} = useGlobalContext();
-const [airingAnime, setAiringAnime] = useState([]);
+  //const  {airingAnime} = useGlobalContext();
+  const [airingAnime, setAiringAnime] = useState([]);
 
-const getAiringAnime = async () => {
-  try {
-    const response = await fetch(`https://api.jikan.moe/v4/anime?filter=airing`);
-    const data = await response.json();
-    setAiringAnime(data.data);
-    console.log(data.data);
-  } catch (error) {
-    console.log(error);
-  }
-}
+  //fetch current airing anime from server
+  const getAiringAnime = async () => {
+    try {
+      const response = await fetch("/api/airing");
+      if (!response.ok) {
+        // Handle non-200 status codes
+        throw new Error(`Error: ${response.status}`);
+      }
+      const data = await response.json();
+      setAiringAnime(data.data);
+    } catch (error) {
+      console.log("Fetch error:", error);
+    }
+  };
 
-useEffect(() => {
-  getAiringAnime
-})
-
-//const animeInfo = airingAnime.slice(0, 4);
+  useEffect(() => {
+    getAiringAnime();
+  }, []);
+  //const animeInfo = airingAnime.slice(0, 4);
   return (
     <div className=" pt-[60px] pb-4 w-full relative flex items-center justify-center">
       {" "}
@@ -70,7 +75,11 @@ useEffect(() => {
         {airingAnime.map((anime) => (
           <SwiperSlide key={anime.mal_id}>
             <div className="bg-black justify-center relative md:h-[500px] h-[250px]  flex airing">
-              <img src={anime.images.jpg.large_image_url} alt="" className=" w-full  mask1" />
+              <img
+                src={anime.images.jpg.large_image_url}
+                alt=""
+                className=" w-full  mask1"
+              />
               <div className=" text-white absolute md:top-[10%] bottom-[5%] left-0 z-10 md:pl-4 pl-2 ">
                 <h1 className=" md:text-[30px] text-[.9rem] font-black md:pb-4 pb-2">
                   {anime.title}
@@ -112,6 +121,5 @@ useEffect(() => {
     </div>
   );
 };
-
 
 export default CurrenAiring;
