@@ -22,7 +22,7 @@ connectDb();
 
 //const PORT = process.env.PORT || 4000;
 
-app.use("/api/anime", require("./Routes/animeRoutes"));
+app.use("/api/anime", require("./Routes/apiRoutes"));
 app.use("/api/user", require("./Routes/userRoutes"));
 
 //db

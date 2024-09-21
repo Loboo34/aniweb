@@ -14,6 +14,8 @@ import { Pagination, Navigation, Keyboard } from "swiper/modules";
 import animeData from "../AnimeData";
 import Card from "../components/Card";
 import Footer from "../components/Footer/Footer";
+import { useGlobalContext } from "../context/GlobalProvider";
+import Cardx from "../components/Cardx";
 
 const Anime = () => {
   //const navigate = useNavigate();
@@ -59,28 +61,18 @@ const Anime = () => {
     }
   };
 
-  const [recommendations, setRecommendations] = useState([]);
+  //const [recommendations, setRecommendations] = useState([]);
 
-  const getRelated = async (anime) => {
-    try {
-      const response = await fetch(
-        `https://api.jikan.moe/v4/recommendations/anime`
-      );
-      const data = await response.json();
-      setRecommendations(data.data);
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+  const { recomendedAnime } = useGlobalContext();
   useEffect(() => {
     getAnime(id);
-    getRelated();
   }, []);
 
-  const related = recommendations.slice(0, 4);
+//const related = recomendedAnime.slice(0, 4);
   const navigate = useNavigate();
+  const config = {
+    showTitle: true,
+  };
   return (
     <div className=" bg-[#000000] pt-[60px] ">
       <div
@@ -142,7 +134,7 @@ const Anime = () => {
               {showMore ? "Show Less" : "More Info"}
             </button>
           </p>
-         
+
           <div className=" pt-3 flex space-x-4">
             <span className=" text-[#00a2ff] text-xl border-2 border-[#00a2ff] pl-2 pr-2 flex items-center cursor-pointer hover:text-[#00a2ffe7]">
               <FontAwesomeIcon icon={faBookmark} className="pr-2 text-lg" />
@@ -174,7 +166,10 @@ const Anime = () => {
       {/* break */}
       <div className="md:pl-8 md:w-9/12 w-full pb-[50px]">
         <h1 className=" text-[#00a2ff] text-[2rem] pb-4">Related</h1>
-        <Card animeData={related} />
+
+        {recomendedAnime.map((anime) => (
+          <Cardx anime={anime} config={config} />
+        ))}
       </div>
       {/* break */}
       <div className=" pl-3">

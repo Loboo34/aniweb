@@ -22,27 +22,8 @@ import { useGlobalContext } from "../context/GlobalProvider";
 const CurrenAiring = () => {
   const swiperNavNextRef = useRef(null);
   const swiperNavPrevRef = useRef(null);
-  //const  {airingAnime} = useGlobalContext();
-  const [airingAnime, setAiringAnime] = useState([]);
-
-  //fetch current airing anime from server
-  const getAiringAnime = async () => {
-    try {
-      const response = await fetch("/api/airing");
-      if (!response.ok) {
-        // Handle non-200 status codes
-        throw new Error(`Error: ${response.status}`);
-      }
-      const data = await response.json();
-      setAiringAnime(data.data);
-    } catch (error) {
-      console.log("Fetch error:", error);
-    }
-  };
-
-  useEffect(() => {
-    getAiringAnime();
-  }, []);
+  const  {airingAnime} = useGlobalContext();
+ 
   //const animeInfo = airingAnime.slice(0, 4);
   return (
     <div className=" pt-[60px] pb-4 w-full relative flex items-center justify-center">
@@ -89,7 +70,7 @@ const CurrenAiring = () => {
                   <span>Action,shounen.... </span>
                 </div>
                 <p className=" text-left md:pr-[50%] md:text-[1rem] text-[.7rem] font-medium pb-6 max-md:hidden ">
-                  {anime.synopsis}
+                  {anime.synopsis.substring(0, 350)}...
                 </p>
                 <div className=" flex space-x-4 md:pt-6">
                   <span className=" text-[.9rem] md:text-[1.2rem] bg-blue-600 pl-3 pr-3 pt-2 pb-2  cursor-default hover:text-black">

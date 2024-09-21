@@ -39,30 +39,13 @@ const Sections = () => {
       description: "",
     },
   ];
-  const some = lazy()
-  const [animeData, setAnimeData] = useState([]);
-  const [anime, setAnime] = useState();
-
-  const {popularAnime} = useGlobalContext();
-
-  const getCurrentAnime = async(anime) => {
-    try{
-      const resposnce = await fetch(
-        "https://api.jikan.moe/v4/recommendations/anime"
-      );
-      const data = await resposnce.json();
-      setAnimeData(data.data);
-    }
-    catch(error){
-      console.log(error);
-    }
-  }
+  
 
 
-  useEffect(() => {
-    getCurrentAnime( anime);
-  }
-  , []);
+  const {upcomingAnime} = useGlobalContext();
+
+ 
+ 
   return (
     <div className=" md:pl-6  md:pr-2 overflow-hidden w-full">
       {secTitle.map((title) => (
@@ -99,8 +82,8 @@ const Sections = () => {
               className="mySwiper  pb-2 md:pb-6"
             >
               <div className=" w-full">
-                {popularAnime.map((anime) => (
-                  <SwiperSlide key={anime.id}>
+                {upcomingAnime.map((anime) => (
+                  <SwiperSlide key={anime.mal_id}>
                     <Link to={`anime/${anime.name}`}>
                       <div className="text-white relative cursor-pointer container h-[100%]">
                         <img
@@ -130,7 +113,7 @@ const Sections = () => {
                             <p>Episodes: {anime.episodes}</p>
                           </>
                           <p className=" pt-4 italic md:text-[1rem] text-[.7rem] pr-2">
-                            {anime.synopsis.substring(0, 90)}...
+                            {anime.synopsis?.substring(0, 90)}...
                           </p>
                           <div className="space-x-5 text-[20px] absolute bottom-2  ">
                             <div className="tooltip">
