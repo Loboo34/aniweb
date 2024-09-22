@@ -63,15 +63,20 @@ const Anime = () => {
 
   //const [recommendations, setRecommendations] = useState([]);
 
-  const { recomendedAnime } = useGlobalContext();
+  const { popularAnime } = useGlobalContext();
   useEffect(() => {
     getAnime(id);
   }, []);
 
-//const related = recomendedAnime.slice(0, 4);
+const related = popularAnime.slice(0, 4);
   const navigate = useNavigate();
   const config = {
     showTitle: true,
+    showImage: true,
+    showSeasons: true,
+    showEpisodes: true,
+    showDescription: true,
+
   };
   return (
     <div className=" bg-[#000000] pt-[60px] ">
@@ -123,6 +128,9 @@ const Anime = () => {
           <p className=" text-base pb-3 text-gray-300">
             sub | dub . {anime.type}
           </p>
+          <p className=" pb-3">
+           {anime.genres?.[0].name + " | "  + anime.genres?.[2].name + " | " + anime.genres?.[3].name}
+          </p>
           <p className=" pb-1 text-white">
             {showMore ? synopsis : synopsis?.substring(0, 450) + "..."}
             <button
@@ -164,11 +172,11 @@ const Anime = () => {
         </div>
       </div>
       {/* break */}
-      <div className="md:pl-8 md:w-9/12 w-full pb-[50px]">
+      <div className="md:pl-8 md:w-9/12 w-full pb-[50px] ">
         <h1 className=" text-[#00a2ff] text-[2rem] pb-4">Related</h1>
 
-        {recomendedAnime.map((anime) => (
-          <Cardx anime={anime} config={config} />
+        {related.map((anime) => (
+          <Card key={anime.mal_id} anime={anime} config={config} />
         ))}
       </div>
       {/* break */}

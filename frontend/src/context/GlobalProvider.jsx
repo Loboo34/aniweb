@@ -107,7 +107,7 @@ export const GlobalProvider = ({ children }) => {
 
   const getRecomendedAnime = async () => {
     try {
-      dispatch({ type: loading });
+      dispatch({ type: LOADING });
       const response = await fetch(`${baseUrl}/recomended`);
       const data = await response.json();
       dispatch({ type: GET_RECOMENDED_ANIME, payload: data.data });
@@ -117,10 +117,10 @@ export const GlobalProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    getAiringAnime();
+   // getAiringAnime();
     getPopularAnime();
     getUpcomingAnime();
-    getRecomendedAnime();
+   // getRecomendedAnime();
   }, []);
   return (
     <GlobalContext.Provider

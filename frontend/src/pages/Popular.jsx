@@ -8,16 +8,23 @@ import { useNavigate } from "react-router-dom";
 import Genretbl from "../components/Genre/Genretbl";
 import TopOfWeek from "../components/TopOfWeek";
 import Footer from "../components/Footer/Footer";
+import { GlobalProvider, useGlobalContext } from "../context/GlobalProvider";
 
 const Popular = () => {
-  // const titlePage = [
-  //   { id: 1, name: "Popular" },
-  //   { id: 1, name: "Tv" },
-  //   { id: 1, name: "Movies" },
-  //   { id: 1, name: "Dub" },
-  //   { id: 1, name: "Popular" },
-  // ];
- 
+  const config = {
+    showTitle: true,
+    showImage: true,
+    showSeasons: true,
+    showEpisodes: true,
+    showDescription: true,
+    showType: true,
+    showGenres: true,
+    showSeason: true,
+    showGenres: true,
+  };
+
+  const { popularAnime } = useGlobalContext();
+
   return (
     <>
       <div className=" md:w-full lg:flex bg-[#000000] pt-[55px] ">
@@ -25,7 +32,9 @@ const Popular = () => {
           <h1 className=" text-[#00a2ffe7]  pb-4 pl-2 md:text-[2.2rem] text-[1.4rem] font-semibold">
             Most Popular
           </h1>
-          <Card animeData={animeData} />
+          {popularAnime.map((anime) => (
+            <Card anime={anime} config={config} />
+          ))}
         </div>
         <div className="  lg:w-3/12 w-[100%] ">
           {" "}
@@ -35,7 +44,6 @@ const Popular = () => {
           <TopOfWeek />
         </div>
       </div>
-     
     </>
   );
 };
