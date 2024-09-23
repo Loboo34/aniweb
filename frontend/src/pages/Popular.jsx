@@ -20,7 +20,6 @@ const Popular = () => {
     showType: true,
     showGenres: true,
     showSeason: true,
-    showGenres: true,
   };
 
   const { popularAnime } = useGlobalContext();
@@ -32,9 +31,12 @@ const Popular = () => {
           <h1 className=" text-[#00a2ffe7]  pb-4 pl-2 md:text-[2.2rem] text-[1.4rem] font-semibold">
             Most Popular
           </h1>
-          {popularAnime.map((anime) => (
-            <Card anime={anime} config={config} />
-          ))}
+          <div className="md:grid md:grid-cols-4">
+            {" "}
+            {popularAnime.map((anime) => (
+              <Card anime={anime} config={config} />
+            ))}
+          </div>
         </div>
         <div className="  lg:w-3/12 w-[100%] ">
           {" "}

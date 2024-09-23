@@ -129,8 +129,8 @@ const related = popularAnime.slice(0, 4);
             sub | dub . {anime.type}
           </p>
           <p className=" pb-3">
-           {anime.genres?.[0].name + " | "  + anime.genres?.[2].name + " | " + anime.genres?.[3].name}
-          </p>
+           {anime.genres?.[0].name + " | "  + anime.genres?.[2]?.name + " | " + anime.genres?.[3]?.name}
+          </p>``
           <p className=" pb-1 text-white">
             {showMore ? synopsis : synopsis?.substring(0, 450) + "..."}
             <button

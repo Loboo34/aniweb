@@ -71,29 +71,6 @@ export const GlobalProvider = ({ children }) => {
     }
   };
 
-  const getCompleteAnime = async () => {
-    try {
-      dispatch({ type: LOADING });
-      const response = await fetch(`${baseUrl}/top/anime?filter=completed`);
-      const data = await response.json();
-      console.log(data.data);
-      dispatch({ type: GET_COMPLETE_ANIME, payload: data.data });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const getTopAnime = async () => {
-    try {
-      dispatch({ type: LOADING });
-      const response = await fetch(`${baseUrl}/top/anime`);
-      const data = await response.json();
-      dispatch({ type: GET_TOP_ANIME, payload: data.data });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const getUpcomingAnime = async () => {
     try {
       dispatch({ type: LOADING });
@@ -117,14 +94,20 @@ export const GlobalProvider = ({ children }) => {
   };
 
   useEffect(() => {
-   // getAiringAnime();
+    getAiringAnime();
     getPopularAnime();
     getUpcomingAnime();
-   // getRecomendedAnime();
+    getRecomendedAnime();
   }, []);
   return (
     <GlobalContext.Provider
-      value={{ ...state, getAiringAnime, getCompleteAnime, getPopularAnime }}
+      value={{
+        ...state,
+        getAiringAnime,
+        getPopularAnime,
+        getUpcomingAnime,
+        getRecomendedAnime,
+      }}
     >
       {children}
     </GlobalContext.Provider>

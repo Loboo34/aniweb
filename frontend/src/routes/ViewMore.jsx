@@ -8,13 +8,12 @@ import Genretbl from "../components/Genre/Genretbl";
 import TopOfWeek from "../components/TopOfWeek";
 import Footer from "../components/Footer/Footer";
 
-const ViewMore = () => {
+const ViewMore = ({animeList}) => {
   const { title } = useParams();
 
   const block = myBlocks.find((block) => block.title === title);
 
- 
-  
+
  
   return (
     <div className=" pt-[60px] bg-[#000000] pr-1 pl-1">
@@ -23,7 +22,10 @@ const ViewMore = () => {
           <h1 className="text-[#00a2ffe7]  pb-4 text-[2.2rem] pl-4 font-semibold">
             {block.title}
           </h1>
-          <Card animeData={animeData} />
+          {animeList.map((anime) => (
+            <Card anime={anime} />
+          ))}
+          <Card anime={anime} />
         </div>
         <div className=" lg:w-3/12 w-[100%] ">
           {" "}
