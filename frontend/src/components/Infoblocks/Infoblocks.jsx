@@ -23,7 +23,7 @@ const Infoblocks = () => {
     switch (block.title) {
       case "TopAring":
         return airingAnime.slice(0, 4);
-      case "Up coming":
+      case "Upcoming":
         return upcomingAnime.slice(0, 4);
       case "Popular":
         return popularAnime.slice(0, 4);
