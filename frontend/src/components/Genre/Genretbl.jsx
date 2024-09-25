@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import GenreData from "./GenreData";
 import { useGlobalContext } from "../../context/GlobalProvider";
 
@@ -43,11 +43,12 @@ const Genretbl = () => {
         <div className="  md:grid md:grid-cols-3   gc ">
           {truncatedGenre.map((genre) => (
             <div className="p-1" key={genre.mal_id}>
+              <Link to={`/genre/${genre.name}`}>
               <span
                 className=" md:text-[.8rem] text-[.99rem] hover:bg-slate-500 pt-1 pb-1 pr-2 pl-2 cursor-default max-md:bg-slate-600 font-bold"
-                onClick={() => {
-                  navigate(`/genre/${genre.name}`);
-                }}
+                // onClick={() => {
+                //   navigate(`/genre/${genre.name}`);
+                // }}
                 style={{
                   color: randomColor(),
                 }}
@@ -58,6 +59,7 @@ const Genretbl = () => {
                   ? `${genre.name.substring(0, 8)}...`
                   : genre.name}
               </span>
+              </Link>
             </div>
           ))}
         </div>

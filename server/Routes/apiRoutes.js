@@ -75,21 +75,22 @@ router.get("/genres", async (req, res) => {
   }
 });
 
-//genre
-router.get("/genre/:genreName", async (req, res) => {
+router.get("/genre", async (req, res) => {
   try {
-    // Get the genre name from the route parameter
-    const genreName = req.params.genreName.toLowerCase();
+    // Extract the genre ID and name from the query parameters
+    const genreId = req.query.id;
+    const genreName = req.query.name ? req.query.name.toLowerCase() : null;
 
-    if (!genreName) {
+    // Validate that both id and name are provided
+    if (!genreId || !genreName) {
       return res
         .status(400)
-        .json({ error: "Genre name is required in the URL." });
+        .json({
+          error: "Both genre ID and name are required as query parameters.",
+        });
     }
 
-    const response = await axios.get(
-      `${baseUrl}/top/anime?filter=bypopularity`
-    ); // Adjust URL as needed
+    const response = await axios.get(`${baseUrl}/anime`); // Adjust the URL as needed
     const data = response.data;
 
     // Check if data exists and contains the expected structure
@@ -97,20 +98,25 @@ router.get("/genre/:genreName", async (req, res) => {
       return res.status(404).json({ error: "No data found" });
     }
 
-    // Filter data for the specified genre
+    // Filter data to include anime that contains the specified genre
     const filteredAnime = data.data.filter((anime) => {
+      // Check if the genres array includes an object where `mal_id` and `name` match the query parameters
       return anime.genres.some(
-        (genres) => genres.name.toLowerCase() === genreName
+        (genre) =>
+          genre.mal_id.toString() === genreId &&
+          genre.name.toLowerCase() === genreName
       );
     });
 
-    // Return filtered data or message if no matches found
+    // Return filtered data or a message if no matches are found
     if (filteredAnime.length > 0) {
       res.json(filteredAnime);
     } else {
       res
         .status(404)
-        .json({ message: `No anime found for genre: ${genreName}` });
+        .json({
+          message: `No anime found for genre: ${genreName} with ID: ${genreId}`,
+        });
     }
   } catch (error) {
     console.error("Error fetching data:", error.message);
@@ -119,5 +125,18 @@ router.get("/genre/:genreName", async (req, res) => {
       .json({ error: "Failed to fetch data from the external API" });
   }
 });
+
+//get all anime
+router.get("/anime", async (req, res) => {
+  try {
+    const response = await axios.get(`${baseUrl}/anime`);
+    const data = response.data;
+    res.json(data);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+
 
 module.exports = router;
