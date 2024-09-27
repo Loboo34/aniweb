@@ -1,17 +1,33 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import GenreData from "../components/Genre/GenreData";
 import Card from "../components/Card";
-import animeData from "../AnimeData";
+
 import Genretbl from "../components/Genre/Genretbl";
 import TopOfWeek from "../components/TopOfWeek";
 import { useGlobalContext } from "../context/GlobalProvider";
 
+
 const Genre = () => {
-  const { name } = useParams();
+  const { name} = useParams();
   const { genres } = useGlobalContext();
- const genre = genres.find((genre) => genre.name === name);
+ const gnre = genres.find((genre) => genre.name === name);
+
+ 
+const {genre} = useGlobalContext();
   
+
+  const config = {
+    showTitle: true,
+    showImage: true,
+    showSeasons: true,
+    showEpisodes: true,
+    showDescription: true,
+    showType: true,
+    showGenres: true,
+    showSeason: true,
+  };
+
+
 
   
   return (
@@ -20,11 +36,11 @@ const Genre = () => {
         <div className=" md:w-9/12">
           <h1 className=" text-[#00a2ffe7]  pb-4 text-[2.2rem] font-semibold">
             
-           
+           {name}
           </h1>
-         {/* {anime.map((anime) => (
+           {genre.map((anime) => (
            <Card anime={anime} config={config} />
-         ))} */}
+         ))}  
         </div>
         <div className="flex flex-col md:w-3/12 w-[100%] ">
           {" "}

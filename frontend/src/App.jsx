@@ -91,7 +91,7 @@ const App = () => {
           <Route path="/movies" element={<Movies />} />
           <Route path="search" element={<Search />} />
           <Route path="/az-list/:name" element={<AZlist />} />
-          <Route path="/genre/:name" element={<Genre />} />
+          <Route path="/genre?name={}" element={<Genre />} />
           
         </Routes>
         <Footer />

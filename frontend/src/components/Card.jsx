@@ -6,7 +6,7 @@ import { faPlay, faAdd } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 
 const Card = ({ anime, config }) => {
-  const navigate = useNavigate();
+
   const [showMore, setShowMore] = useState(false);
   return (
     <div className=" cardcontainer  pl-1 pr-1 pb-5 w-full">
@@ -28,7 +28,7 @@ const Card = ({ anime, config }) => {
               <h1>
                 {showMore
                   ? anime.title
-                  : anime.title.length > 22
+                  : anime.title?.length > 22
                   ? `${anime.title.substring(0, 22)}...`
                   : anime.title}
               </h1>
@@ -41,7 +41,7 @@ const Card = ({ anime, config }) => {
             <div
               className=" pl-3 pt-2 absolute top-0 left-0 h-[100%] info"
               style={{
-                backgroundImage: `url(${anime.images.jpg.large_image_url})`,
+                backgroundImage: `url(${anime.images?.jpg.large_image_url})`,
               }}
             >
               <>
@@ -60,7 +60,7 @@ const Card = ({ anime, config }) => {
                 )}
               </>
               {config.showDescription && (
-                <p>{anime.synopsis.substring(0, 100)}...</p>
+                <p>{anime?.synopsis?.substring(0, 100)}...</p>
               )}
               <div className="space-x-5 text-[20px] absolute bottom-2  ">
                 <div className="tooltip">

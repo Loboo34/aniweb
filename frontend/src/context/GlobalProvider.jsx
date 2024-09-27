@@ -11,6 +11,7 @@ const GET_AIRING_ANIME = "GET_AIRING_ANIME";
 const GET_COMPLETE_ANIME = "GET_COMPLETE_ANIME";
 const GET_RECOMENDED_ANIME = "GET_RECOMENDED_ANIME";
 const GET_GENRES = "GET_GENRES";
+const GET_Genre = "GET_Genre";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -30,6 +31,9 @@ const reducer = (state, action) => {
       return { ...state, recomendedAnime: action.payload, loading: false };
     case GET_GENRES:
       return { ...state, genres: action.payload, loading: false };
+    case GET_Genre:
+      return { ...state, genres: action.payload, loading: false };
+
     case SEARCH:
       return { ...state, searchResults: action.payload, isSearch: true };
     default:
@@ -45,6 +49,7 @@ export const GlobalProvider = ({ children }) => {
     completeAnime: [],
     recomendedAnime: [],
     genres: [],
+    genre: [],
     pictures: [],
     isSearch: false,
     searchResults: [],
@@ -108,10 +113,21 @@ export const GlobalProvider = ({ children }) => {
     }
   }
 
+  const getGenre = async (name) => {
+    try {
+      dispatch({ type: LOADING });
+      const response = await fetch(`${baseUrl}/genre?name=${genre.name}`);
+      const data = await response.json();
+      dispatch({ type: GET_GENRES, payload: data.data });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
-    getAiringAnime();
+   // getAiringAnime();
     getPopularAnime();
-    getUpcomingAnime();
+    //getUpcomingAnime();
     getRecomendedAnime();
   }, []);
   return (
@@ -123,6 +139,7 @@ export const GlobalProvider = ({ children }) => {
         getUpcomingAnime,
         getRecomendedAnime,
         getGenres,
+        getGenre,
       }}
     >
       {children}

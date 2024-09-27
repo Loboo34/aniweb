@@ -18,20 +18,14 @@ import { useGlobalContext } from "../context/GlobalProvider";
 import Cardx from "../components/Cardx";
 
 const Anime = () => {
-  //const navigate = useNavigate();
-
   const { id } = useParams();
-  //  const anime = animeData.find((anime) => anime.name === name);
-
-  //   if (!anime) {
-  //     return (
-  //       <p className=" pt-[56px] w-full h-full flex justify-center items-center">
-  //         Not Found
-  //       </p>
-  //     );
-  //   }
   const [anime, setAnime] = useState({});
+  const [recommendations, setRecommendations] = useState([]);
   const [showMore, setShowMore] = useState(false);
+  const {popularAnime} = useGlobalContext();
+  const [loading, setLoading] = useState(false);
+
+  const popular = popularAnime.slice(0, 10);
 
   const {
     title,
@@ -48,42 +42,61 @@ const Anime = () => {
     status,
     rating,
     source,
+    type,
+    genres,
+    episodes,
+    mal_id,
   } = anime;
-
-  const getAnime = async (anime) => {
+ const config = {
+   showTitle: true,
+   showImage: true,
+   showSeasons: true,
+   showEpisodes: true,
+   showDescription: true,
+   showType: true,
+   showGenres: true,
+   showSeason: true,
+ };
+  const getAnime = async (id) => {
     try {
-      const response = await fetch(`https://api.jikan.moe/v4/anime/${anime}`);
+      const response = await fetch(`https://api.jikan.moe/v4/anime/${id}`);
       const data = await response.json();
-      setAnime(data.data);
       console.log(data);
+      setAnime(data.data);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
   };
 
-  //const [recommendations, setRecommendations] = useState([]);
+  //get recommendations
+  const getRecommendations = async (id) => {
+    try {
+      const response = await fetch(
+        ` https://api.jikan.moe/v4/anime/${id}/recommendations`
+      );
+      const data = await response.json();
+      console.log(data);
+      setRecommendations(data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  const { popularAnime } = useGlobalContext();
   useEffect(() => {
     getAnime(id);
+    getRecommendations(id);
   }, []);
 
-const related = popularAnime.slice(0, 4);
-  const navigate = useNavigate();
-  const config = {
-    showTitle: true,
-    showImage: true,
-    showSeasons: true,
-    showEpisodes: true,
-    showDescription: true,
+  const related = recommendations?.slice(0, 4);
 
-  };
+ 
   return (
     <div className=" bg-[#000000] pt-[60px] ">
       <div
         className="  h-[250px] flex justify-center alt"
         style={{
-          backgroundImage: `url(${anime.images?.jpg.large_image_url})`,
+          backgroundImage: `url(${images?.jpg.large_image_url})`,
           backgroundSize: "cover",
           width: "100%",
           //height: "100%"
@@ -91,15 +104,14 @@ const related = popularAnime.slice(0, 4);
         }}
       >
         <img
-          src={anime.images?.jpg.large_image_url}
+          src={images?.jpg.large_image_url}
           alt={anime.title}
           className=" w-[320px]"
         />
       </div>
       <div className="grid md:grid-cols-2 md:pl-6 text-white pb-4 ">
         <div className="   pt-3 pl-4 pb-5">
-          <h1 className=" text-4xl pb-3 text-white">{anime.title}</h1>
-
+          <h1 className=" text-4xl pb-3 text-white">{title}</h1>
           <div className="  flex space-x-2 pb-3 items-center">
             <span className="text-xl flex space-x-1 pr-1 ">
               <FontAwesomeIcon
@@ -123,14 +135,17 @@ const related = popularAnime.slice(0, 4);
                 className=" hover:text-[#00a2ff] "
               />
             </span>
-            |<span>Average Rating:{anime.rating}</span>
+            |<span>Average Rating:{rating}</span>
           </div>
-          <p className=" text-base pb-3 text-gray-300">
-            sub | dub . {anime.type}
-          </p>
+          <p className=" text-base pb-3 text-gray-300">sub | dub . {type}</p>
           <p className=" pb-3">
-           {anime.genres?.[0].name + " | "  + anime.genres?.[2]?.name + " | " + anime.genres?.[3]?.name}
-          </p>``
+            {genres?.[0].name +
+              " | " +
+              genres?.[2]?.name +
+              " | " +
+              genres?.[3]?.name}
+          </p>
+          ``
           <p className=" pb-1 text-white">
             {showMore ? synopsis : synopsis?.substring(0, 450) + "..."}
             <button
@@ -142,7 +157,6 @@ const related = popularAnime.slice(0, 4);
               {showMore ? "Show Less" : "More Info"}
             </button>
           </p>
-
           <div className=" pt-3 flex space-x-4">
             <span className=" text-[#00a2ff] text-xl border-2 border-[#00a2ff] pl-2 pr-2 flex items-center cursor-pointer hover:text-[#00a2ffe7]">
               <FontAwesomeIcon icon={faBookmark} className="pr-2 text-lg" />
@@ -155,7 +169,7 @@ const related = popularAnime.slice(0, 4);
           </div>
         </div>
         <div className=" flex flex-col justify-center items-center text-white">
-          {anime.trailer?.embed_url && (
+          {trailer?.embed_url && (
             <iframe
               src={trailer?.embed_url}
               title="Inline frame Exaple"
@@ -174,10 +188,11 @@ const related = popularAnime.slice(0, 4);
       {/* break */}
       <div className="md:pl-8 md:w-9/12 w-full pb-[50px] ">
         <h1 className=" text-[#00a2ff] text-[2rem] pb-4">Related</h1>
-
-        {related.map((anime) => (
-          <Card key={anime.mal_id} anime={anime} config={config} />
-        ))}
+        <div className=" flex space-x-2">
+          {related.map((anime) => (
+            <Cardx anime={anime} config={config} />
+          ))}
+        </div>
       </div>
       {/* break */}
       <div className=" pl-3">
@@ -212,60 +227,9 @@ const related = popularAnime.slice(0, 4);
           modules={[Pagination, Navigation, Keyboard]}
           className="mySwiper  pb-11 md:pl-8 pr-8"
         >
-          {animeData.map((anime) => (
+          {popular.map((anime) => (
             <SwiperSlide key={anime.id}>
-              <Link to={`/anime/${anime.name}`}>
-                <div
-                  className="text-white relative cursor-pointer container h-[100%]"
-                  onClick={() => {
-                    navigate(`anime/${anime.name}`);
-                  }}
-                >
-                  <img
-                    src={anime.cardpic}
-                    alt={anime.name}
-                    className=" md:h-[290px] md:w-[250px]  w-[180px] h-[200px]"
-                  />
-                  <h1>{anime.name}</h1>
-                  <span className=" text-sm pb-2 text-gray-500">sub | dub</span>
-                  <div
-                    className=" pl-3 pt-2 absolute top-0 left-0 h-[100%] info"
-                    style={{ backgroundImage: `url(${anime.cardpic})` }}
-                  >
-                    <>
-                      <h1 className="pb-2 text-[20px] text-[#00a2ff]">
-                        {anime.name}
-                      </h1>
-                      <p>No of seasons</p>
-                      <p>No of Episodes</p>
-                    </>
-                    <p className=" pt-4 italic text-[.7rem] md:text-[1rem]">
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                      Ipsum impedit ut ex porro deserunt accusantium delectus.{" "}
-                    </p>
-                    <div className="space-x-5 text-[20px] absolute bottom-2  ">
-                      <div className="tooltip">
-                        <FontAwesomeIcon
-                          icon={faPlay}
-                          className="hover:text-[#00a2ff]  "
-                        />
-                        <span className=" text-[13px] font-semibold tooltiptext">
-                          Play
-                        </span>
-                      </div>
-                      <div className=" tooltip">
-                        <FontAwesomeIcon
-                          icon={faAdd}
-                          className="hover:text-[#00a2ff] "
-                        />
-                        <span className=" text-[13px] font-semibold tooltiptext">
-                          Add to WAtchlist
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Link>
+              <Card anime={anime} config={config} />
             </SwiperSlide>
           ))}
         </Swiper>
