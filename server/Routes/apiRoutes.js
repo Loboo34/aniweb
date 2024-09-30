@@ -1,14 +1,25 @@
 const express = require("express");
 const axios = require("axios");
-const redis = require("redis");
+const NodeCache = require("node-cache");
 
-const client = redis.createClient({
-  url: "redis://localhost:6379",
-});
+const cache = new NodeCache({ stdTTL: 300 }); // 5 minutes
 
-//top/anime?filter=upcoming
+const cacheMiddleware = (req, res, next) => {
+  const key = req.originalUrl;
 
-//client.connect.catch();
+  const cachedData = cache.get(key);
+  if (cachedData) {
+    return res.json(cachedData);
+  }
+
+  res.sendResponse = res.json;
+  res.json = (body) => {
+    cache.set(key, body);
+    res.sendResponse(body);
+  };
+
+  next();
+};
 
 const baseUrl = "https://api.jikan.moe/v4";
 
@@ -26,11 +37,9 @@ router.get("/", async (req, res) => {
 });
 
 //airing anime route
-router.get("/airing", async (req, res) => {
+router.get("/airing", cacheMiddleware, async (req, res) => {
   try {
-    const response = await axios.get(
-      `${baseUrl}/top/anime?filter=airing&limit=10`
-    );
+    const response = await axios.get(`${baseUrl}/top/anime?filter=airing`);
     const data = response.data;
     res.json(data);
   } catch (error) {
@@ -39,10 +48,10 @@ router.get("/airing", async (req, res) => {
 });
 
 //popular
-router.get("/popular", async (req, res) => {
+router.get("/popular", cacheMiddleware, async (req, res) => {
   try {
     const response = await axios.get(
-      `${baseUrl}/top/anime?filter=bypopularity&limit=10`
+      `${baseUrl}/top/anime?filter=bypopularity`
     );
     const data = response.data;
     res.json(data);
@@ -52,7 +61,7 @@ router.get("/popular", async (req, res) => {
 });
 
 //upcoming
-router.get("/upcoming", async (req, res) => {
+router.get("/upcoming", cacheMiddleware, async (req, res) => {
   try {
     const response = await axios.get(`${baseUrl}/top/anime?filter=upcoming`);
     const data = response.data;
@@ -62,18 +71,16 @@ router.get("/upcoming", async (req, res) => {
   }
 });
 
-//completed
-
 //recomended
-router.get("/recomended", async (req, res) => {
-  try {
-    const response = await axios.get(`${baseUrl}/recomendations/anime`);
-    const data = response.data;
-    res.json(data);
-  } catch (error) {
-    console.log(error);
-  }
-});
+// router.get("/recomended", async (req, res) => {
+//   try {
+//     const response = await axios.get(`${baseUrl}/recomendations/anime`);
+//     const data = response.data;
+//     res.json(data);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
 
 //genress
 router.get("/genres", async (req, res) => {
@@ -193,15 +200,25 @@ router.get("/genre", async (req, res) => {
   }
 });
 
-//recommendations
-router.get("/recommendations", async (req, res) => {
-  try {
-    const response = await axios.get(`${baseUrl}/anime/{id}/recommendations`);
-    const data = response.data;
-    res.json(data);
-  } catch (error) {
-    console.log(error);
-  }
-});
+// router.get("all", async (req, res) => {
+//   try {
+//     const [airing, popular, upcoming, genres] = await Promise.all([
+//       axios.get(`${baseUrl}/top/anime?filter=airing`),
+//       axios.get(`${baseUrl}/top/anime?filter=bypopularity`),
+//       axios.get(`${baseUrl}/top/anime?filter=upcoming`),
+//       axios.get(`${baseUrl}/genres/anime`),
+//     ]);
+
+//     res.json({
+//       airing: airing.data,
+//       popular: popular.data,
+//       upcoming: upcoming.data,
+//       genres: genres.data,
+//     });
+//   } catch (error) {
+//     console.log(error);
+//   }
+
+// });
 
 module.exports = router;

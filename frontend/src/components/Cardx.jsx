@@ -8,13 +8,15 @@ import { Link, useNavigate } from "react-router-dom";
 const Cardx = ({ anime, config }) => {
  
   const [showMore, setShowMore] = useState(false);
+  const navigate = useNavigate();
   return (
     <div className=" cardcontainer  pl-1 pr-1 pb-5 w-full">
       <div>
-        <Link to={`/anime/${anime.id}`}>
-          <div
-            className="pb-8 relative md:h-[330px] h-[300px]  text-white container card "
-          >
+        <>
+          <div className="pb-8 relative md:h-[330px] h-[300px]  text-white container card "
+          onClick={() => {
+            navigate(`/anime/${anime.mal_id}`);
+          }}>
             {config.showImage && (
               <img
                 src={anime.entry.images?.jpg.large_image_url}
@@ -83,7 +85,7 @@ const Cardx = ({ anime, config }) => {
               </div>
             </div>
           </div>
-        </Link>
+        </>
       </div>
     </div>
   );

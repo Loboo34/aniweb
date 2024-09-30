@@ -6,7 +6,6 @@ const connectDb = require("./Config/dbConnection");
 require("dotenv").config();
 //const path = require('path')
 
-
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -34,7 +33,7 @@ app.use((req, res, next) => {
   res.header(
     "Access-Control-Allow-Headers",
     "Authorization",
-    "Origin, X-Requested-With, Content-Type, Accept"
+    "Origin, X-Requested-With, Content-Type, Accept" // Allow these headers
   );
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS"); // Allow various HTTP methods
   next();

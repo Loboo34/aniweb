@@ -6,17 +6,20 @@ import { faPlay, faAdd } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 
 const Card = ({ anime, config }) => {
+const navigate = useNavigate()
+
 
   const [showMore, setShowMore] = useState(false);
   return (
-    <div className=" cardcontainer  pl-1 pr-1 pb-5 w-full">
+    <div className=" cardcontainer  pl-1 pr-1 pb-5 w-full cursor-pointer">
       <div>
-        <Link to={`/anime/${anime.mal_id}`}>
+        <>
           <div
             className="pb-8 relative md:h-[330px] h-[300px]  text-white container card  "
-            key={anime.id}
+            key={anime.mal_id}
+            onClick={ () =>{ navigate(`/anime/${anime.mal_id}`)}}
           >
-            {config.showImage && (
+            {config?.showImage && (
               <img
                 src={anime.images?.jpg.large_image_url}
                 alt={anime.name}
@@ -24,7 +27,7 @@ const Card = ({ anime, config }) => {
               />
             )}
 
-            {config.showTitle && (
+            {config?.showTitle && (
               <h1>
                 {showMore
                   ? anime.title
@@ -84,7 +87,7 @@ const Card = ({ anime, config }) => {
               </div>
             </div>
           </div>
-        </Link>
+        </>
       </div>
     </div>
   );

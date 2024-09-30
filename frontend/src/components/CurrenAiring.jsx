@@ -24,7 +24,7 @@ const CurrenAiring = () => {
   const swiperNavPrevRef = useRef(null);
   const  {airingAnime} = useGlobalContext();
  
-  const animeInfo = airingAnime.slice(0, 4);
+  const animeInfo = airingAnime?.slice(0, 4);
   return (
     <div className=" pt-[60px] pb-4 w-full relative flex items-center justify-center">
       {" "}
@@ -53,11 +53,11 @@ const CurrenAiring = () => {
           swiper.navigation.update();
         }}
       >
-        {animeInfo.map((anime) => (
+        {animeInfo?.map((anime) => (
           <SwiperSlide key={anime.mal_id}>
             <div className="bg-black justify-center relative md:h-[500px] h-[250px]  flex airing">
               <img
-                src={anime.images.jpg.large_image_url}
+                src={anime?.images.jpg.large_image_url}
                 alt=""
                 className=" w-full  mask1"
               />

@@ -24,6 +24,7 @@ const Anime = () => {
   const [showMore, setShowMore] = useState(false);
   const {popularAnime} = useGlobalContext();
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const popular = popularAnime.slice(0, 10);
 
@@ -57,36 +58,31 @@ const Anime = () => {
    showGenres: true,
    showSeason: true,
  };
-  const getAnime = async (id) => {
-    try {
-      const response = await fetch(`https://api.jikan.moe/v4/anime/${id}`);
-      const data = await response.json();
-      console.log(data);
-      setAnime(data.data);
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
-  //get recommendations
-  const getRecommendations = async (id) => {
-    try {
+
+  useEffect(() => {
+  const fetchAnime = async () => {
+    const response = await fetch(`https://api.jikan.moe/v4/anime/${id}`);
+    const data = await response.json();
+    console.log(data);
+    setAnime(data.data);
+  };
+  fetchAnime();
+  }, [id]);
+
+
+  useEffect(() => {
+    const fetchRecommendations = async () => {
       const response = await fetch(
-        ` https://api.jikan.moe/v4/anime/${id}/recommendations`
+        `https://api.jikan.moe/v4/anime/${id}/recommendations`
       );
       const data = await response.json();
       console.log(data);
       setRecommendations(data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    };
+    fetchRecommendations();
+  }, [id]);
 
-  useEffect(() => {
-    getAnime(id);
-    getRecommendations(id);
-  }, []);
 
   const related = recommendations?.slice(0, 4);
 
@@ -111,7 +107,7 @@ const Anime = () => {
       </div>
       <div className="grid md:grid-cols-2 md:pl-6 text-white pb-4 ">
         <div className="   pt-3 pl-4 pb-5">
-          <h1 className=" text-4xl pb-3 text-white">{title}</h1>
+          <h1 className=" text-4xl pb-3 text-white">{anime?.title}</h1>
           <div className="  flex space-x-2 pb-3 items-center">
             <span className="text-xl flex space-x-1 pr-1 ">
               <FontAwesomeIcon
@@ -228,7 +224,7 @@ const Anime = () => {
           className="mySwiper  pb-11 md:pl-8 pr-8"
         >
           {popular.map((anime) => (
-            <SwiperSlide key={anime.id}>
+            <SwiperSlide key={anime.mal_id}>
               <Card anime={anime} config={config} />
             </SwiperSlide>
           ))}

@@ -1,4 +1,11 @@
-import React, { createContext, useContext, useEffect, useReducer } from "react";
+
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 
 const GlobalContext = createContext();
 const baseUrl = "http://localhost:4000/api/anime";
@@ -12,6 +19,7 @@ const GET_COMPLETE_ANIME = "GET_COMPLETE_ANIME";
 const GET_RECOMENDED_ANIME = "GET_RECOMENDED_ANIME";
 const GET_GENRES = "GET_GENRES";
 const GET_Genre = "GET_Genre";
+const GET_ALL_ANIME = "GET_ALL_ANIME";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -33,6 +41,8 @@ const reducer = (state, action) => {
       return { ...state, genres: action.payload, loading: false };
     case GET_Genre:
       return { ...state, genres: action.payload, loading: false };
+    case GET_ALL_ANIME:
+      return { ...state, allAnime: action.payload, loading: false };
 
     case SEARCH:
       return { ...state, searchResults: action.payload, isSearch: true };
@@ -40,6 +50,7 @@ const reducer = (state, action) => {
       return state;
   }
 };
+
 export const GlobalProvider = ({ children }) => {
   const initialState = {
     airingAnime: [],
@@ -124,12 +135,16 @@ export const GlobalProvider = ({ children }) => {
     }
   }
 
-  useEffect(() => {
-   // getAiringAnime();
+useEffect(() => {
+  const intervalId = setInterval(() => {
+    getAiringAnime();
     getPopularAnime();
-    //getUpcomingAnime();
+    getUpcomingAnime();
     getRecomendedAnime();
-  }, []);
+  }, 10000); // `300000` milliseconds = 5 minutes
+
+  return () => clearInterval(intervalId);
+}, []);
   return (
     <GlobalContext.Provider
       value={{
@@ -146,6 +161,7 @@ export const GlobalProvider = ({ children }) => {
     </GlobalContext.Provider>
   );
 };
+
 
 export const useGlobalContext = () => {
   return useContext(GlobalContext);
