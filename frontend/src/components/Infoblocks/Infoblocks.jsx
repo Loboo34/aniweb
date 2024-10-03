@@ -27,6 +27,8 @@ const Infoblocks = () => {
         return upcomingAnime.slice(0, 4);
       case "Popular":
         return popularAnime.slice(0, 4);
+        case "Completed":
+        return favoriteAnime.slice(0, 4);
     
       default:
         return [];

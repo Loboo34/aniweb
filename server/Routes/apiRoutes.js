@@ -71,6 +71,17 @@ router.get("/upcoming", cacheMiddleware, async (req, res) => {
   }
 });
 
+//favorite
+router.get("/favorite", cacheMiddleware, async (req, res) => {
+  try {
+    const response = await axios.get(`${baseUrl}/top/anime?filter=favorite`);
+    const data = response.data;
+    res.json(data);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 //recomended
 // router.get("/recomended", async (req, res) => {
 //   try {
