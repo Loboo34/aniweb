@@ -6,8 +6,7 @@ import { faPlay, faAdd } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 
 const Card = ({ anime, config }) => {
-const navigate = useNavigate()
-
+  const navigate = useNavigate();
 
   const [showMore, setShowMore] = useState(false);
   return (
@@ -17,7 +16,9 @@ const navigate = useNavigate()
           <div
             className="pb-8 relative md:h-[330px] h-[300px]  text-white container card  "
             key={anime.mal_id}
-            onClick={ () =>{ navigate(`/anime/${anime.mal_id}`)}}
+            onClick={() => {
+              navigate(`/anime/${anime.mal_id}`);
+            }}
           >
             {config?.showImage && (
               <img

@@ -18,6 +18,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../context/GlobalProvider";
+import { useAnime } from "../context/AnimeContext";
 
 const CurrenAiring = () => {
   const swiperNavNextRef = useRef(null);
@@ -57,9 +58,9 @@ const CurrenAiring = () => {
           <SwiperSlide key={anime.mal_id}>
             <div className="bg-black justify-center relative md:h-[500px] h-[250px]  flex airing">
               <img
-                src={anime?.images.jpg.large_image_url}
+                src={anime?.images?.jpg.large_image_url}
                 alt=""
-                className=" w-full  mask1"
+                className=" w-[90%]  mask1"
               />
               <div className=" text-white absolute md:top-[10%] bottom-[5%] left-0 z-10 md:pl-4 pl-2 ">
                 <h1 className=" md:text-[30px] text-[.9rem] font-black md:pb-4 pb-2">

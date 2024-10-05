@@ -7,36 +7,38 @@ import { Link, useNavigate } from "react-router-dom";
 import myBlocks from "./myBlocks";
 import { useGlobalContext } from "../../context/GlobalProvider";
 import Card from "./card";
+import { useAnime } from "../../context/AnimeContext";
 
 const Infoblocks = () => {
   const navigate = useNavigate();
 
   const myBlocks = [
     { id: 0, title: "TopAring" },
-    { id: 1, title: "Up coming" },
+    { id: 1, title: "Upcoming" },
     { id: 2, title: "Popular" },
     { id: 3, title: "Completed" },
   ];
 
-  const { popularAnime, airingAnime, upcomingAnime, favoriteAnime } = useGlobalContext();
+  const { popularAnime, airingAnime, upcomingAnime, favoriteAnime } =
+    useGlobalContext();
   const renderAnime = (block) => {
     switch (block.title) {
       case "TopAring":
-        return airingAnime.slice(0, 4);
+        return airingAnime?.slice(0, 4);
       case "Upcoming":
-        return upcomingAnime.slice(0, 4);
+        return upcomingAnime?.slice(0, 4);
       case "Popular":
-        return popularAnime.slice(0, 4);
-        case "Completed":
-        return favoriteAnime.slice(0, 4);
-    
+        return popularAnime?.slice(0, 4);
+      case "Completed":
+        return favoriteAnime?.slice(0, 4);
+
       default:
         return [];
     }
   };
 
   return (
-    <div className=" md:flex md:space-x-3 pb-5">
+    <div className=" md:grid md:grid-cols-4 pb-5 infoblock">
       {myBlocks.map((block) => {
         const animeList = renderAnime(block);
 

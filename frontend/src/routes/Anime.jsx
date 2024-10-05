@@ -107,7 +107,7 @@ const Anime = () => {
       </div>
       <div className="grid md:grid-cols-2 md:pl-6 text-white pb-4 ">
         <div className="   pt-3 pl-4 pb-5">
-          <h1 className=" text-4xl pb-3 text-white">{anime?.title}</h1>
+          <h1 className=" text-4xl pb-3 text-white">{anime.title}</h1>
           <div className="  flex space-x-2 pb-3 items-center">
             <span className="text-xl flex space-x-1 pr-1 ">
               <FontAwesomeIcon
@@ -191,7 +191,7 @@ const Anime = () => {
         </div>
       </div>
       {/* break */}
-      <div className=" pl-3">
+      <div className=" pl-3 w-full">
         <h1 className=" text-[#00a2ff] text-3xl md:pl-6 pl-1 pb-4">
           More Like This
         </h1>
@@ -202,8 +202,8 @@ const Anime = () => {
           }}
           breakpoints={{
             480: {
-              slidesPerView: 2,
               spaceBetween: 2,
+              slidesPerView: 3,
             },
             768: {
               spaceBetween: 20,
@@ -211,7 +211,7 @@ const Anime = () => {
             },
           }}
           slidesPerView={2}
-          spaceBetween={5}
+          spaceBetween={10}
           // grabCursor={true}
           // pagination={{
           //   clickable: true,

@@ -88,10 +88,13 @@ opacity: 1;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
  gap: 1rem;
 row-gap: 2rem;
-
-  
+ 
 }
-
+.infoblock{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1rem;
+}
 .gc{
   display: flex;
   flex-wrap: wrap;

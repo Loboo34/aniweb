@@ -14,6 +14,7 @@ const Cardx = ({ anime, config }) => {
       <div>
         <>
           <div className="pb-8 relative md:h-[330px] h-[300px]  text-white container card "
+          key={anime.mal_id}
           onClick={() => {
             navigate(`/anime/${anime.mal_id}`);
           }}>

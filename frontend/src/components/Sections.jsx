@@ -8,11 +8,12 @@ import "swiper/css/navigation";
 import { Pagination, Navigation, Keyboard } from "swiper/modules";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlay, faAdd } from "@fortawesome/free-solid-svg-icons";
+import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../context/GlobalProvider";
 import Card from "./Card";
 import Cardx from "./Cardx";
+import { useAnime } from "../context/AnimeContext";
 const Sections = () => {
   const secTitle = [
     {
@@ -58,9 +59,9 @@ const Sections = () => {
   const renderAnime = (section) => {
     switch (section.name) {
       case "Latest Episodes":
-        return upcomingAnime.slice(0, 10);
+        return upcomingAnime?.slice(0, 10);
       case "Over-Powered Protagonist":
-        return popularAnime.slice(0, 10);
+        return popularAnime?.slice(0, 10);
       // case "Worth The Bing":
       //   return popularAnime.slice(0, 10);
       // case "Under Rated":
@@ -74,13 +75,22 @@ const Sections = () => {
 
   return (
     <div className=" md:pl-6  md:pr-2 overflow-hidden w-full">
-      {secTitle.map((section) => {
+      {secTitle?.map((section) => {
         const animeList = renderAnime(section);
         return (
           <div key={section.id}>
-            <h1 className=" text-[#00a2ff] text-[24px]  md:pb-4 pb-3 font-semibold ">
-              {section.name}
-            </h1>
+            <div className=" relative">
+              <h1 className=" text-[#00a2ff] text-[24px]  md:pb-4 pb-3 font-semibold ">
+                {section.name}
+              </h1>
+              <div className=" absolute right-6 top-3 text-white hover:text-[#00a2ff] pl-2 pr-2 flex space-x-2   cursor-pointer">
+                <p className="text-[15px]">View more</p>
+                <FontAwesomeIcon
+                  icon={faAngleRight}
+                  className="text-[#00a2ff] md:text-[15px] text-[.7rem] font-extrabold pt-[.39em]  "
+                />
+              </div>
+            </div>
             <div className=" w-full">
               <Swiper
                 style={{
@@ -89,7 +99,8 @@ const Sections = () => {
                 }}
                 breakpoints={{
                   480: {
-                    slidesPerView: 2,
+                    spaceBetween: 2,
+                    slidesPerView: 4,
                   },
                   768: {
                     spaceBetween: 20,
@@ -101,7 +112,7 @@ const Sections = () => {
                 //   clickable: true,
                 // }}
                 slidesPerView={2}
-                spaceBetween={10}
+               spaceBetween={10}
                 keyboard={{
                   enabled: true,
                 }}
@@ -110,7 +121,7 @@ const Sections = () => {
                 className="mySwiper  pb-2 md:pb-6"
               >
                 <div className=" w-full">
-                  {animeList.map((anime) => (
+                  {animeList?.map((anime) => (
                     <SwiperSlide>
                       <div className=" flex">
                         <Card anime={anime} config={config} />
