@@ -45,14 +45,14 @@ const fetchAllAnimeData = async () => {
       fetchWithBackoff(`${baseUrl}/airing`),
       fetchWithBackoff(`${baseUrl}/popular`),
       fetchWithBackoff(`${baseUrl}/upcoming`),
-      fetchWithBackoff(`${baseUrl}/favorite`)
+      //fetchWithBackoff(`${baseUrl}/favorite`)
     ]);
 
   return {
     airingAnime: airingResponse.data,
     popularAnime: popularResponse.data,
     upcomingAnime: upcomingResponse.data,
-    favoriteAnime: favoriteResponse.data,
+   // favoriteAnime: favoriteResponse.data,
   };
 };
 

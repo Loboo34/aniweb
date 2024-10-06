@@ -82,17 +82,6 @@ router.get("/favorite", cacheMiddleware, async (req, res) => {
   }
 });
 
-//recomended
-// router.get("/recomended", async (req, res) => {
-//   try {
-//     const response = await axios.get(`${baseUrl}/recomendations/anime`);
-//     const data = response.data;
-//     res.json(data);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
-
 //genress
 router.get("/genres", async (req, res) => {
   try {
@@ -156,15 +145,6 @@ router.get("/genres", async (req, res) => {
 // });
 
 //get all anime
-router.get("/anime", async (req, res) => {
-  try {
-    const response = await axios.get(`${baseUrl}/anime`);
-    const data = response.data;
-    res.json(data);
-  } catch (error) {
-    console.log(error);
-  }
-});
 
 router.get("/genre", async (req, res) => {
   try {
@@ -210,6 +190,30 @@ router.get("/genre", async (req, res) => {
       .json({ error: "Failed to fetch data from the external API" });
   }
 });
+
+router.get("/anime", async (req, res) => {
+  try {
+    const response = await axios.get(`${baseUrl}/anime`);
+    const data = response.data;
+    res.json(data);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+//get anime by first letter
+router.get("/anime/:letter", cacheMiddleware, async (req, res) => {
+  const { letter } = req.params;
+  try {
+    const response = await axios.get(`${baseUrl}/anime?letter=${letter}`);
+    const data = response.data;
+    res.json(data);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+
 
 // router.get("all", async (req, res) => {
 //   try {

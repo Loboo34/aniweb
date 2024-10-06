@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTelegram,
@@ -19,6 +19,8 @@ const Footer = () => {
     backgroundSize: "cover",
     width: "100%",
   };
+
+
   return (
     <div className=" relative pt-8 pb-8  pl-4 bg-[#000000d9] " style={myStyle}>
       <div className=" flex pb-4  max-md:items-center max-md:justify-center">
@@ -61,14 +63,14 @@ const Footer = () => {
       </div>
       <div className=" pt-4 flex flex-wrap space-x-1 max-md:hidden">
         {footerLinks.map((link) => (
-          <Link to={`/az-list/${link.name}`} key={link.id}>
+          <Link to={`/az-list/${link.letter}`} key={link.id}>
             <button
               className=" text-[1rem] pt-1 pb-1  bg-black text-white pl-2 pr-2 rounded mr-2 hover:bg-pink-500 font-medium"
               // onClick={() => {
               //   window.location.pathname = link.path;
               // }}
             >
-              {link.name}
+              {link.letter}
             </button>
           </Link>
         ))}

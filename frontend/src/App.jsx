@@ -24,6 +24,7 @@ import Movies from "./pages/Movies";
 import AZlist from "./pages/AZ-list";
 import Search from "./pages/Search";
 import ScrollToTopOnRouteChange from "./routes/Scrool";
+import SectionViewMore from "./pages/SectionViewMore";
 
 //import animeData from "./AnimeData";
 
@@ -87,10 +88,11 @@ const App = () => {
           <Route path="/popular" element={<Popular />} />
           <Route path="/anime/:id" element={<Anime />} />
           <Route path="/viewmore/:title" element={<ViewMore />} />
+          <Route path="/more/:name" element={<SectionViewMore />} />
           <Route path="/tvseries" element={<Series />} />
           <Route path="/movies" element={<Movies />} />
           <Route path="search" element={<Search />} />
-          <Route path="/az-list/:name" element={<AZlist />} />
+          <Route path="/az-list/:letter" element={<AZlist />} />
           <Route path="/genre?name={}" element={<Genre />} />
           
         </Routes>

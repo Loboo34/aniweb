@@ -15,35 +15,9 @@ import Card from "./Card";
 import Cardx from "./Cardx";
 import { useAnime } from "../context/AnimeContext";
 const Sections = () => {
-  const secTitle = [
-    {
-      id: 0,
-      name: "Latest Episodes",
-      description: "",
-    },
-    {
-      id: 1,
-      name: "Over-Powered Protagonist",
-      description: "",
-    },
-    // {
-    //   id: 2,
-    //   name: "Worth The Bing",
-    //   description: "",
-    // },
-    // {
-    //   id: 3,
-    //   name: "Under Rated",
-    //   description: "",
-    // },
-    // {
-    //   id: 4,
-    //   name: "Must watch",
-    //   description: "",
-    // },
-  ];
+ 
 
-  const { upcomingAnime, popularAnime } = useGlobalContext();
+  const { upcomingAnime, popularAnime, airingAnime } = useGlobalContext();
 
   const config = {
     showTitle: true,
@@ -59,7 +33,7 @@ const Sections = () => {
   const renderAnime = (section) => {
     switch (section.name) {
       case "Latest Episodes":
-        return upcomingAnime?.slice(0, 10);
+        return airingAnime?.slice(0, 10);
       case "Over-Powered Protagonist":
         return popularAnime?.slice(0, 10);
       // case "Worth The Bing":
@@ -83,13 +57,15 @@ const Sections = () => {
               <h1 className=" text-[#00a2ff] text-[24px]  md:pb-4 pb-3 font-semibold ">
                 {section.name}
               </h1>
-              <div className=" absolute right-6 top-3 text-white hover:text-[#00a2ff] pl-2 pr-2 flex space-x-2   cursor-pointer">
-                <p className="text-[15px]">View more</p>
-                <FontAwesomeIcon
-                  icon={faAngleRight}
-                  className="text-[#00a2ff] md:text-[15px] text-[.7rem] font-extrabold pt-[.39em]  "
-                />
-              </div>
+              <Link to={`/more/${section.name}`}>
+                <div className=" absolute right-6 top-3 text-white hover:text-[#00a2ff] pl-2 pr-2 flex space-x-2   cursor-pointer">
+                  <p className="text-[15px]">View more</p>
+                  <FontAwesomeIcon
+                    icon={faAngleRight}
+                    className="text-[#00a2ff] md:text-[15px] text-[.7rem] font-extrabold pt-[.39em]  "
+                  />
+                </div>
+              </Link>
             </div>
             <div className=" w-full">
               <Swiper
@@ -112,7 +88,7 @@ const Sections = () => {
                 //   clickable: true,
                 // }}
                 slidesPerView={2}
-               spaceBetween={10}
+                spaceBetween={10}
                 keyboard={{
                   enabled: true,
                 }}
@@ -139,3 +115,32 @@ const Sections = () => {
 };
 
 export default Sections;
+
+export  const secTitle = [
+  {
+    id: 0,
+    name: "Latest Episodes",
+    description: "",
+  },
+  {
+    id: 1,
+    name: "Over-Powered Protagonist",
+    description: "",
+  },
+  // {
+  //   id: 2,
+  //   name: "Worth The Bing",
+  //   description: "",
+  // },
+  // {
+  //   id: 3,
+  //   name: "Under Rated",
+  //   description: "",
+  // },
+  // {
+  //   id: 4,
+  //   name: "Must watch",
+  //   description: "",
+  // },
+];
+
