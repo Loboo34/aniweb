@@ -38,7 +38,7 @@ const AZlist = () => {
       <h1 className=" text-[#00a2ffe7]  pb-4 md:text-[2.2rem] text-[1.2rem] font-semibold">
         AZ-List
       </h1>
-      <div className=" md:flex pb-10  md:flex-wrap md:gap-4 grid grid-cols-8 gap-1">
+      <div className=" md:flex pb-10  md:flex-wrap md:gap-4 grid grid-cols-8 ">
         {footerLinks.map((link) => (
           <NavLink
             to={`/az-list/${link.letter}`}

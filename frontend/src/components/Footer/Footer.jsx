@@ -61,7 +61,7 @@ const Footer = () => {
           Searching anime order by alphabet name A to Z.
         </h4>
       </div>
-      <div className=" pt-4 flex flex-wrap space-x-1 max-md:hidden">
+      <div className=" pt-4 flex flex-wrap space-x-0 max-md:hidden">
         {footerLinks.map((link) => (
           <Link to={`/az-list/${link.letter}`} key={link.id}>
             <button

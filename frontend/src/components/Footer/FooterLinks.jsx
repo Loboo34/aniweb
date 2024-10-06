@@ -1,19 +1,5 @@
 const footerLinks = [
-  {
-    id: 0,
-    letter: "All",
-    path: "/az-list",
-  },
-  {
-    id: 1,
-    letter: "#",
-    path: "/#",
-  },
-  {
-    id: 2,
-    letter: "09",
-    path: "/09",
-  },
+  
   {
     id: 3,
     letter: "A",
