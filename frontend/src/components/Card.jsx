@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 //import animeData from "../AnimeData";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faAdd } from "@fortawesome/free-solid-svg-icons";
@@ -21,7 +23,7 @@ const Card = ({ anime, config }) => {
             }}
           >
             {config?.showImage && (
-              <img
+              <LazyLoadImage
                 src={anime.images?.jpg.large_image_url}
                 alt={anime.name}
                 className=" h-[95%] w-[100%]"

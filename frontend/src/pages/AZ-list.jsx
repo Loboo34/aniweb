@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import { Link, NavLink, useParams } from "react-router-dom";
 import footerLinks from "../components/Footer/FooterLinks";
-import Card from "../components/Card";
-import animeData from "../AnimeData";
-import AzCard from "../components/AzCard";
-import Footer from "../components/Footer/Footer";
+//import Card from "../components/Card";
+const Card = lazy(() => import("../components/Card"));
 
 const AZlist = () => {
   const { letter } = useParams();
@@ -54,7 +52,9 @@ const AZlist = () => {
       <>
         <div className="md:grid md:grid-cols-5">
           {animeList.map((anime) => (
+            <Suspense key={anime.id} fallback={<div>Loading...</div>}>
             <Card anime={anime} config={config} />
+            </Suspense>
           ))}
         </div>
       </>

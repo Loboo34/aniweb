@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useMemo, useReducer } from "react";
 import useSWR from "swr";
+import {useDebounce} from "../hooks/useDebounce";
 
 const GlobalContext = createContext();
 const baseUrl = "http://localhost:4000/api/anime";
@@ -40,19 +41,25 @@ const fetchWithBackoff = async (url, retries = 3, backoff = 500) => {
 
 // Combined Fetch for All Anime Data
 const fetchAllAnimeData = async () => {
-  const [airingResponse, popularResponse, upcomingResponse, favoriteResponse] =
+  const [airingResponse, popularResponse, upcomingResponse, favoriteResponse, moviesResponse, specialResponse, ovaResponse] =
     await Promise.all([
       fetchWithBackoff(`${baseUrl}/airing`),
       fetchWithBackoff(`${baseUrl}/popular`),
       fetchWithBackoff(`${baseUrl}/upcoming`),
-      //fetchWithBackoff(`${baseUrl}/favorite`)
+      fetchWithBackoff(`${baseUrl}/favorite`)
+      //fetchWithBackoff(`${baseUrl}/movies`),
+      //fetchWithBackoff(`${baseUrl}/special`),
+      //fetchWithBackoff(`${baseUrl}/ova`),
     ]);
 
   return {
     airingAnime: airingResponse.data,
     popularAnime: popularResponse.data,
     upcomingAnime: upcomingResponse.data,
-   // favoriteAnime: favoriteResponse.data,
+    favoriteAnime: favoriteResponse.data,
+    //movies: moviesResponse.data,
+    //special: specialResponse.data,
+    //ova: ovaResponse.data,
   };
 };
 
@@ -63,14 +70,21 @@ export const GlobalProvider = ({ children }) => {
     popularAnime: [],
     upcomingAnime: [],
     favoriteAnime: [],
+    movies: [],
+    special: [],
+    ova: [],
     loading: false,
     error: null,
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
-
+const refresh = useDebounce(initialState, 1000);
   // Use SWR for combined fetch
-  const { data, error } = useSWR("/anime/all", fetchAllAnimeData);
+  const { data, error } = useSWR("/anime/all", fetchAllAnimeData, {
+    revalidateOnFocus: false,
+    refresh
+
+  });
 
   // Dispatch when data or error changes
   useMemo(() => {
@@ -88,6 +102,9 @@ export const GlobalProvider = ({ children }) => {
       popularAnime: state.popularAnime,
       upcomingAnime: state.upcomingAnime,
       favoriteAnime: state.favoriteAnime,
+      movies: state.movies,
+      special: state.special,
+      ova: state.ova,
       loading: state.loading,
       error: state.error,
     }),

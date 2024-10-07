@@ -1,4 +1,4 @@
-import React, { lazy, useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 //import animeData from "../AnimeData";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -12,8 +12,9 @@ import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../context/GlobalProvider";
 import Card from "./Card";
-import Cardx from "./Cardx";
-import { useAnime } from "../context/AnimeContext";
+
+
+
 const Sections = () => {
  
 
@@ -99,9 +100,11 @@ const Sections = () => {
                 <div className=" w-full">
                   {animeList?.map((anime) => (
                     <SwiperSlide>
-                      <div className=" flex">
-                        <Card anime={anime} config={config} />
-                      </div>
+                      <Suspense fallback={<div>Loading...</div>}>
+                        <div className=" flex">
+                          <Card anime={anime} config={config} />
+                        </div>
+                      </Suspense>
                     </SwiperSlide>
                   ))}
                 </div>

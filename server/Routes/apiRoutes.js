@@ -127,7 +127,7 @@ router.get("/special", cacheMiddleware, async (req, res) => {
 });
 
 //genress
-router.get("/genres", async (req, res) => {
+router.get("/genres", cacheMiddleware, async (req, res) => {
   try {
     const response = await axios.get(`${baseUrl}/genres/anime`);
     const data = response.data;
@@ -138,10 +138,7 @@ router.get("/genres", async (req, res) => {
 });
 
 //get anime by genre
-router.get("/genre/:name", cacheMiddleware, async (req, res) => {
-  
-  
-});
+
 //get all anime
 
 router.get("/genre", async (req, res) => {
