@@ -18,7 +18,7 @@ import Card from "./Card";
 const Sections = () => {
  
 
-  const { upcomingAnime, popularAnime, airingAnime } = useGlobalContext();
+  const { upcomingAnime, popularAnime, airingAnime, movies, special } = useGlobalContext();
 
   const config = {
     showTitle: true,
@@ -33,10 +33,10 @@ const Sections = () => {
 
   const renderAnime = (section) => {
     switch (section.name) {
-      case "Latest Episodes":
-        return airingAnime?.slice(0, 10);
-      case "Over-Powered Protagonist":
-        return popularAnime?.slice(0, 10);
+      case "Top Movies":
+        return movies?.slice(0, 10);
+      case "Specials":
+        return special?.slice(0, 10);
       // case "Worth The Bing":
       //   return popularAnime.slice(0, 10);
       // case "Under Rated":
@@ -122,12 +122,12 @@ export default Sections;
 export  const secTitle = [
   {
     id: 0,
-    name: "Latest Episodes",
+    name: "Top Movies",
     description: "",
   },
   {
     id: 1,
-    name: "Over-Powered Protagonist",
+    name: "Specials",
     description: "",
   },
   // {

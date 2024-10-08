@@ -11,7 +11,7 @@ const SectionViewMore = () => {
 
     const section = secTitle.find((sec) => sec.name === name);
 
-    const { upcomingAnime, popularAnime, airingAnime } = useGlobalContext();
+    const {  movies, special } = useGlobalContext();
 
     const config = {
         showTitle: true,
@@ -26,10 +26,10 @@ const SectionViewMore = () => {
 
     const renderAnime = (section) => {
         switch (section.name) {
-            case "Latest Episodes":
-                return airingAnime;
-            case "Over-Powered Protagonist":
-                return popularAnime;
+            case "Top Movies":
+                return movies;
+            case "Specials":
+                return special;
             default:
                 return [];
         }

@@ -46,9 +46,9 @@ const fetchAllAnimeData = async () => {
       fetchWithBackoff(`${baseUrl}/airing`),
       fetchWithBackoff(`${baseUrl}/popular`),
       fetchWithBackoff(`${baseUrl}/upcoming`),
-      fetchWithBackoff(`${baseUrl}/favorite`)
-      //fetchWithBackoff(`${baseUrl}/movies`),
-      //fetchWithBackoff(`${baseUrl}/special`),
+      fetchWithBackoff(`${baseUrl}/favorite`),
+      fetchWithBackoff(`${baseUrl}/movies`),
+      fetchWithBackoff(`${baseUrl}/special`),
       //fetchWithBackoff(`${baseUrl}/ova`),
     ]);
 
@@ -57,8 +57,8 @@ const fetchAllAnimeData = async () => {
     popularAnime: popularResponse.data,
     upcomingAnime: upcomingResponse.data,
     favoriteAnime: favoriteResponse.data,
-    //movies: moviesResponse.data,
-    //special: specialResponse.data,
+    movies: moviesResponse.data,
+    special: specialResponse.data,
     //ova: ovaResponse.data,
   };
 };
@@ -81,8 +81,10 @@ export const GlobalProvider = ({ children }) => {
 const refresh = useDebounce(initialState, 1000);
   // Use SWR for combined fetch
   const { data, error } = useSWR("/anime/all", fetchAllAnimeData, {
-    revalidateOnFocus: false,
-    refresh
+    revalidateOnFocus: false, // Don't revalidate on focus
+    revalidateOnReconnect: false, // Don't revalidate on reconnect
+    refreshInterval: refresh, // Revalidate every 10 minutes
+
 
   });
 
