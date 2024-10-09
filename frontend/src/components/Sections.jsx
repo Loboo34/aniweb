@@ -80,8 +80,8 @@ const Sections = () => {
                     slidesPerView: 4,
                   },
                   768: {
-                    spaceBetween: 20,
-                    slidesPerView: 5,
+                    spaceBetween: 2,
+                    slidesPerView: 6,
                   },
                 }}
                 // grabCursor={true}

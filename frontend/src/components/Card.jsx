@@ -12,11 +12,11 @@ const Card = ({ anime, config }) => {
 
   const [showMore, setShowMore] = useState(false);
   return (
-    <div className=" cardcontainer  pl-1 pr-1 pb-5 w-full cursor-pointer">
+    <div className=" pl-1 pr-1 pb-5 cursor-pointer">
       <div>
         <>
           <div
-            className="pb-8 relative md:h-[330px] h-[300px]  text-white container card  "
+            className="pb-8 relative md:h-[330px] h-[300px]  text-white container  "
             key={anime.mal_id}
             onClick={() => {
               navigate(`/anime/${anime.mal_id}`);

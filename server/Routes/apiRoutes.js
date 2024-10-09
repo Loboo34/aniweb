@@ -137,9 +137,51 @@ router.get("/genres", cacheMiddleware, async (req, res) => {
   }
 });
 
-//get anime by genre
+//get anime and check status equal to Finished Airing
+router.get("/complete", cacheMiddleware, async (req, res) => {
+  try {
+    // Step 1: Fetch data from the external API
+    const response = await axios.get(`${baseUrl}/top/anime`);
 
-//get all anime
+    // Step 2: Check if response structure is correct
+    if (response?.data?.data) {
+      const animeData = response.data.data;
+
+      // Step 3: Apply filtering logic for "Finished Airing"
+      const finishedAnimes = animeData.filter(
+        (anime) => anime.status === "Finished Airing"
+      );
+
+      // Step 4: Implement pagination if necessary
+      const page = parseInt(req.query.page) || 1; // Default to page 1
+      const limit = parseInt(req.query.limit) || 25; // Default to 10 results per page
+      const startIndex = (page - 1) * limit;
+      const endIndex = page * limit;
+
+      const paginatedResults = finishedAnimes.slice(startIndex, endIndex);
+      // Step 5: Return the filtered and paginated results
+      return res.status(200).json({
+        total: finishedAnimes.length,
+        page,
+        limit,
+        data: paginatedResults,
+      });
+    } else {
+      // Handle unexpected response structure from external API
+      return res
+        .status(500)
+        .json({ error: "Unexpected response structure from external API" });
+    }
+  } catch (error) {
+    // Step 6: Error handling in case the external API fails
+    console.error("Error fetching data from external API:", error.message);
+
+    // Send a proper error response
+    return res
+      .status(500)
+      .json({ error: "Failed to fetch data from external API" });
+  }
+});
 
 router.get("/genre", async (req, res) => {
   try {
@@ -196,15 +238,76 @@ router.get("/anime", async (req, res) => {
   }
 });
 
+//get data from anime router and filter by type
 //get anime by first letter
 router.get("/anime/:letter", cacheMiddleware, async (req, res) => {
   const { letter } = req.params;
+  const { page = 1, limit = 25 } = req.query;
   try {
-    const response = await axios.get(`${baseUrl}/anime?letter=${letter}`);
-    const data = response.data;
-    res.json(data);
+    const response = await axios.get(`${baseUrl}/anime?letter=${letter}`, {
+      params: {
+        page,
+        limit,
+      },
+    });
+    const { data, pagination } = response.data;
+    res.status(200).json({
+      pagination: {
+        current_page: pagination.current_page,
+        last_visible_page: pagination.last_visible_page,
+        has_next_page: pagination.has_next_page,
+        items: {
+          count: pagination.items.count,
+          total: pagination.items.total,
+          per_page: pagination.items.per_page,
+        },
+      },
+      data, // The actual list of popular anime
+    });
   } catch (error) {
     console.log(error);
+  }
+});
+
+const fetchAllPages = async (url, collectedData = [], page = 1) => {
+  try {
+    const response = await axios.get(url, { params: { page } });
+
+    if (response?.data?.data) {
+      const currentData = response.data.data;
+      const allData = [...collectedData, ...currentData];
+      // Check if the API indicates there's another page
+      const hasNextPage = response.data.meta?.nextPage; // Adjust to your API's pagination logic
+
+      if (hasNextPage) {
+        return await fetchAllPages(url, allData, page + 1);
+      } else {
+        return allData;
+      }
+    } else {
+      throw new Error("Unexpected response structure");
+    }
+  } catch (error) {
+    console.error("Error fetching data:", error.message);
+    throw error;
+  }
+};
+
+router.get("/finished", cacheMiddleware, async (req, res) => {
+  try {
+    const response = await axios.get(`${baseUrl}/anime`, {
+      params: { status: "Finished Airing" },
+    });
+
+    if (response?.data?.data) {
+      const finishedAnimes = response.data.data;
+      res.json(finishedAnimes);
+    }
+    // Step 3: Return the filtered data
+    res.json(finishedAnimes);
+  } catch (error) {
+    console.error("Error processing request:", error.message);
+    return res.status(500).json({ error: "Failed to process request" });
   }
 });
 

@@ -86,8 +86,8 @@ opacity: 1;
 .cardcontainer{
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
- gap: 1rem;
-row-gap: 2rem;
+ 
+/* row-gap: 2rem; */
  
 }
 .infoblock{

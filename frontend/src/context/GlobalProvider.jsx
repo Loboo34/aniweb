@@ -41,12 +41,12 @@ const fetchWithBackoff = async (url, retries = 3, backoff = 500) => {
 
 // Combined Fetch for All Anime Data
 const fetchAllAnimeData = async () => {
-  const [airingResponse, popularResponse, upcomingResponse, favoriteResponse, moviesResponse, specialResponse, ovaResponse] =
+  const [airingResponse, popularResponse, upcomingResponse, completeResponse, moviesResponse, specialResponse, ovaResponse] =
     await Promise.all([
       fetchWithBackoff(`${baseUrl}/airing`),
       fetchWithBackoff(`${baseUrl}/popular`),
       fetchWithBackoff(`${baseUrl}/upcoming`),
-      fetchWithBackoff(`${baseUrl}/favorite`),
+      fetchWithBackoff(`${baseUrl}/complete`),
       fetchWithBackoff(`${baseUrl}/movies`),
       fetchWithBackoff(`${baseUrl}/special`),
       //fetchWithBackoff(`${baseUrl}/ova`),
@@ -56,7 +56,7 @@ const fetchAllAnimeData = async () => {
     airingAnime: airingResponse.data,
     popularAnime: popularResponse.data,
     upcomingAnime: upcomingResponse.data,
-    favoriteAnime: favoriteResponse.data,
+    completeAnime: completeResponse.data,
     movies: moviesResponse.data,
     special: specialResponse.data,
     //ova: ovaResponse.data,
@@ -70,6 +70,7 @@ export const GlobalProvider = ({ children }) => {
     popularAnime: [],
     upcomingAnime: [],
     favoriteAnime: [],
+    completeAnime: [],
     movies: [],
     special: [],
     ova: [],
@@ -103,6 +104,7 @@ const refresh = useDebounce(initialState, 1000);
       airingAnime: state.airingAnime,
       popularAnime: state.popularAnime,
       upcomingAnime: state.upcomingAnime,
+      completeAnime: state.completeAnime,
       favoriteAnime: state.favoriteAnime,
       movies: state.movies,
       special: state.special,

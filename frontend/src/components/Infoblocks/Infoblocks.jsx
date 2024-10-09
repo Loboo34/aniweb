@@ -19,7 +19,7 @@ const Infoblocks = () => {
     { id: 3, title: "Completed" },
   ];
 
-  const { popularAnime, airingAnime, upcomingAnime, favoriteAnime } =
+  const { popularAnime, airingAnime, upcomingAnime,  completeAnime } =
     useGlobalContext();
   const renderAnime = (block) => {
     switch (block.title) {
@@ -30,7 +30,7 @@ const Infoblocks = () => {
       case "Popular":
         return popularAnime?.slice(0, 4);
       case "Completed":
-        return favoriteAnime?.slice(0, 4);
+        return completeAnime?.slice(0, 4);
 
       default:
         return [];

@@ -43,14 +43,13 @@ const SectionViewMore = () => {
           <h1 className="text-[#00a2ffe7]  pb-4 text-[2.2rem] pl-4 font-semibold">
             {name}
           </h1>
-          <div className="md:grid md:grid-cols-4">
+          <div className="md:grid md:grid-cols-4 cardcontainer">
             {animeList.map((anime) => (
               <Card anime={anime} config={config} />
             ))}
           </div>
         </div>
         <div className=" lg:w-3/12 w-[100%] ">
-          {" "}
           <>
             <Genretbl />
           </>

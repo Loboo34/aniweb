@@ -19,6 +19,8 @@ import {
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../context/GlobalProvider";
 import { useAnime } from "../context/AnimeContext";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const CurrenAiring = () => {
   const swiperNavNextRef = useRef(null);
@@ -57,7 +59,7 @@ const CurrenAiring = () => {
         {animeInfo?.map((anime) => (
           <SwiperSlide key={anime.mal_id}>
             <div className="bg-black justify-center relative md:h-[500px] h-[250px]  flex airing">
-              <img
+              <LazyLoadImage
                 src={anime?.images?.jpg.large_image_url}
                 alt=""
                 className=" w-[90%]  mask1"

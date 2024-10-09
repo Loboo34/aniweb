@@ -1,4 +1,5 @@
 import React from "react"
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom"
 
 const Card = ({anime}) => {
@@ -7,8 +8,8 @@ const Card = ({anime}) => {
       <div className=" flex flex-col " key={anime?.mal_id}>
         <div className=" flex space-x-2 pb-2  w-full" key={anime.mal_id}>
           <Link to={`/anime/${anime.mal_id}`}>
-            <div className=" h-[100px] w-[80px] bg-red-400">
-              <img
+            <div className=" h-[100px] w-[80px]">
+              <LazyLoadImage
                 src={anime?.images?.jpg.large_image_url}
                 alt="pic"
                 className="  h-[100%] w-full"

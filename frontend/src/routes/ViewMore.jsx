@@ -14,7 +14,7 @@ const ViewMore = () => {
 
   const block = myBlocks.find((block) => block.title === title);
 
-  const { popularAnime, airingAnime, upcomingAnime, favoriteAnime } =
+  const { popularAnime, airingAnime, upcomingAnime, completeAnime } =
     useGlobalContext();
 
   const renderAnime = (block) => {
@@ -26,7 +26,7 @@ const ViewMore = () => {
       case "Popular":
         return popularAnime;
       case "Completed":
-        return favoriteAnime;
+        return completeAnime;
       default:
         return [];
     }
@@ -50,7 +50,7 @@ const ViewMore = () => {
           <h1 className="text-[#00a2ffe7]  pb-4 text-[2.2rem] pl-4 font-semibold">
             {block?.title}
           </h1>
-          <div className="md:grid md:grid-cols-4">
+          <div className="md:grid md:grid-cols-4 cardcontainer">
             {animeList.map((anime) => (
               <Card anime={anime} config={config} />
             ))}
