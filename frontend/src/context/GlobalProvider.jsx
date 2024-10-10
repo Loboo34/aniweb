@@ -43,9 +43,9 @@ const fetchWithBackoff = async (url, retries = 3, backoff = 500) => {
 const fetchAllAnimeData = async () => {
   const [airingResponse, popularResponse, upcomingResponse, completeResponse, moviesResponse, specialResponse, ovaResponse] =
     await Promise.all([
-      fetchWithBackoff(`${baseUrl}/airing`),
-      fetchWithBackoff(`${baseUrl}/popular`),
-      fetchWithBackoff(`${baseUrl}/upcoming`),
+      //fetchWithBackoff(`${baseUrl}/airing`),
+      //fetchWithBackoff(`${baseUrl}/popular`),
+      //fetchWithBackoff(`${baseUrl}/upcoming`),
       fetchWithBackoff(`${baseUrl}/complete`),
       fetchWithBackoff(`${baseUrl}/movies`),
       fetchWithBackoff(`${baseUrl}/special`),
@@ -53,9 +53,9 @@ const fetchAllAnimeData = async () => {
     ]);
 
   return {
-    airingAnime: airingResponse.data,
-    popularAnime: popularResponse.data,
-    upcomingAnime: upcomingResponse.data,
+   // airingAnime: airingResponse.data,
+   // popularAnime: popularResponse.data,
+   // upcomingAnime: upcomingResponse.data,
     completeAnime: completeResponse.data,
     movies: moviesResponse.data,
     special: specialResponse.data,

@@ -250,7 +250,7 @@ router.get("/anime/:letter", cacheMiddleware, async (req, res) => {
         limit,
       },
     });
-    const { data, pagination } = response.data;
+    const { pagination, data } = response.data;
     res.status(200).json({
       pagination: {
         current_page: pagination.current_page,

@@ -1,6 +1,7 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
 import { Link, NavLink, useParams } from "react-router-dom";
 import footerLinks from "../components/Footer/FooterLinks";
+import axios from "axios";
 //import Card from "../components/Card";
 const Card = lazy(() => import("../components/Card"));
 
@@ -15,20 +16,37 @@ const AZlist = () => {
   const [error, setError] = useState(null);
 
   const limit = 25; // Number of items per page
+  const fetchWithBackoff = async (url, retries = 3, backoff = 500) => {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error("API Error");
+      return await response.json();
+    } catch (error) {
+      if (retries > 0) {
+        console.log(`Retrying in ${backoff} ms...`);
+        await new Promise((res) => setTimeout(res, backoff));
+        return fetchWithBackoff(url, retries - 1, backoff * 2); // Exponential backoff
+      }
+      throw error;
+    }
+  };
 
+  const getAnime = async (page) => {
+    setLoading(true);
+    const response = await axios.get(
+      `http://localhost:4000/api/anime/anime/${letter}?page=${page}&limit=${limit}`
+    );
+    const { pagination, data } = response.data;
+    setAnimeList(data);
+    console.log(data.data);
+    setCurrentPage(pagination.current_page);
+    setTotalPages(pagination.last_visible_page);
+    setHasNextPage(pagination.has_next_page);
+
+    console.log(pagination);
+    setLoading(false);
+  };
   useEffect(() => {
-    const getAnime = async () => {
-      setLoading(true);
-      const response = await fetch(
-        `http://localhost:4000/api/anime/anime/${letter}?page=${currentPage}&limit=${limit}`
-      );
-      const { data, pagination } = await response.json();
-      console.log(data);
-      setAnimeList(data.data);
-      setCurrentPage(pagination.current_page); // Update current page state
-      setTotalPages(pagination.last_visible_page); // Update total pages
-      setHasNextPage(pagination.has_next_page); // Update next page availability
-    };
     getAnime(currentPage);
   }, [letter, currentPage]);
   // const filter = animeData.slice(0, 10)
@@ -48,7 +66,6 @@ const AZlist = () => {
       setCurrentPage((prev) => prev + 1);
     }
   };
-
   const handlePreviousPage = () => {
     if (currentPage > 1) {
       setCurrentPage((prev) => prev - 1);
@@ -85,7 +102,7 @@ const AZlist = () => {
       {loading && <div>Loading...</div>}
       <p className=" text-white">
         {" "}
-        Page {currentPage} of {totalPages}
+        Page {currentPage} of {totalPages}{" "}
       </p>
       {!loading && (
         <div className=" text-white">
