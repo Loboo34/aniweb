@@ -2,6 +2,7 @@ import React, { lazy, Suspense, useEffect, useState } from "react";
 import { Link, NavLink, useParams } from "react-router-dom";
 import footerLinks from "../components/Footer/FooterLinks";
 import axios from "axios";
+import Paginatin from "../components/Paginatin";
 //import Card from "../components/Card";
 const Card = lazy(() => import("../components/Card"));
 
@@ -17,10 +18,7 @@ const AZlist = () => {
   const [error, setError] = useState(null);
 
   const limit = 25; // Number of items per page
- 
 
- 
-  
   //   setLoading(true);
   //   const response = await axios.get(
   //     `http://localhost:4000/api/anime/anime/${letter}?page=${page}&limit=${limit}`
@@ -33,9 +31,8 @@ const AZlist = () => {
   //   setHasNextPage(pagination.has_next_page);
 
   //   console.log(pagination);
-    
-  // };
 
+  // };
 
   // useEffect(() => {
   //   getAnime(currentPage);
@@ -52,18 +49,9 @@ const AZlist = () => {
     showSeason: true,
   };
 
-  const handleNextPage = () => {
-    if (hasNextPage) {
-      setCurrentPage((prev) => prev + 1);
-    }
-  };
-  const handlePreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage((prev) => prev - 1);
-    }
-  };
-const fetchAnime = async (page) => {
-  setLoading(true)
+ 
+  const fetchAnime = async (page) => {
+    setLoading(true);
     try {
       const response = await axios.get(
         `http://localhost:4000/api/anime/anime/${letter}?page=${page}&limit=${limit}`
@@ -78,30 +66,23 @@ const fetchAnime = async (page) => {
       setLoading(false);
     } catch (error) {
       setError(error);
-    }finally{
-      setLoading(false)
+    } finally {
+      setLoading(false);
     }
-  }
+  };
 
-  useEffect(() => { 
+  useEffect(() => {
     //setLoading(true)
-    fetchAnime(currentPage, selectedLetter)
+    fetchAnime(currentPage, selectedLetter);
   }, [letter, currentPage, selectedLetter]);
 
   const handleLetterChange = (letter) => {
     setSelectedLetter(letter);
     setCurrentPage(1);
-  }
-
-  //function to generate page numbers based on total pages
-  const generatePageNumbers = () => {
-    const pages = [];
-    for (let i = 1; i <= totalPages; i++) {
-      pages.push(i);
-    }
-    return pages;
   };
 
+  //function to generate page numbers based on total pages
+ 
   return (
     <div className="pt-[55px] md:pl-4  relative">
       <h1 className=" text-[#00a2ffe7]  pb-4 md:text-[2.2rem] text-[1.2rem] font-semibold">
@@ -125,9 +106,9 @@ const fetchAnime = async (page) => {
         {loading ? (
           <div>Loading...</div>
         ) : (
-          <div className="md:grid md:grid-cols-5 cardContainer">
+          <div className="md:grid md:grid-cols-5 cardContainer pb-[30px]">
             {animeList.map((anime) => (
-              <Suspense key={anime.id} fallback={<div>Loading...</div>}>
+              <Suspense key={anime.mal_id} fallback={<div>Loading...</div>}>
                 <Card anime={anime} config={config} />
               </Suspense>
             ))}
@@ -135,23 +116,8 @@ const fetchAnime = async (page) => {
         )}
       </>
       {loading && <div>Loading...</div>}
-     
-      
-     <div>
-    {generatePageNumbers().map((page) => (
-      <button
-        key={page}
-        onClick={() => setCurrentPage(page)}
-        className={`${
-          currentPage === page ? "bg-gray-500" : "bg-gray-300"
-        } text-white font-semibold text-lg p-2 rounded-lg`}
-      >
-        {page}
-      </button>
-    ))}
-     </div>
 
-    
+     <Paginatin totalPages={totalPages} currentPage={currentPage} hasNextPage={hasNextPage} />
     </div>
   );
 };

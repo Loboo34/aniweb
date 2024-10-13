@@ -49,12 +49,31 @@ router.get("/airing", cacheMiddleware, async (req, res) => {
 
 //popular
 router.get("/popular", cacheMiddleware, async (req, res) => {
+  const { page = 1, limit = 25 } = req.query;
   try {
     const response = await axios.get(
-      `${baseUrl}/top/anime?filter=bypopularity`
+      `${baseUrl}/top/anime?filter=bypopularity`,
+      {
+        params: {
+          page,
+          limit,
+        },
+      }
     );
-    const data = response.data;
-    res.json(data);
+    const { pagination, data } = response.data;
+    res.status(200).json({
+      pagination: {
+        current_page: pagination.current_page,
+        last_visible_page: pagination.last_visible_page,
+        has_next_page: pagination.has_next_page,
+        items: {
+          count: pagination.items.count,
+          total: pagination.items.total,
+          per_page: pagination.items.per_page,
+        },
+      },
+      data, // The actual list of popular anime
+    });
   } catch (error) {
     console.log(error);
   }

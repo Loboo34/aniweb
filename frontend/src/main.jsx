@@ -6,7 +6,7 @@ import "./index.css";
 
 import { AuthContextProvider } from "./context/AuthContext";
 import { GlobalProvider } from "./context/GlobalProvider";
-import { AnimeProvider } from "./context/AnimeContext";
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

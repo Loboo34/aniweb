@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useMemo, useReducer } from "react";
+import React, { createContext, useContext, useMemo, useReducer, useState } from "react";
 import useSWR from "swr";
 import {useDebounce} from "../hooks/useDebounce";
 
@@ -39,27 +39,38 @@ const fetchWithBackoff = async (url, retries = 3, backoff = 500) => {
   }
 };
 
+
+
 // Combined Fetch for All Anime Data
-const fetchAllAnimeData = async () => {
-  const [airingResponse, popularResponse, upcomingResponse, completeResponse, moviesResponse, specialResponse, ovaResponse] =
-    await Promise.all([
-      //fetchWithBackoff(`${baseUrl}/airing`),
-      //fetchWithBackoff(`${baseUrl}/popular`),
-      //fetchWithBackoff(`${baseUrl}/upcoming`),
-      fetchWithBackoff(`${baseUrl}/complete`),
-      fetchWithBackoff(`${baseUrl}/movies`),
-      fetchWithBackoff(`${baseUrl}/special`),
-      //fetchWithBackoff(`${baseUrl}/ova`),
-    ]);
+const fetchAllAnimeData = async (page) => {
+ const limit = 25;
+  const [
+    airingResponse,
+    popularResponse,
+    upcomingResponse,
+    completeResponse,
+    moviesResponse,
+    specialResponse,
+    ovaResponse,
+  ] = await Promise.all([
+    fetchWithBackoff(`${baseUrl}/airing`),
+    fetchWithBackoff(`${baseUrl}/popular`),
+    fetchWithBackoff(`${baseUrl}/upcoming`),
+    fetchWithBackoff(`${baseUrl}/complete`),
+    //fetchWithBackoff(`${baseUrl}/movies`),
+    //fetchWithBackoff(`${baseUrl}/special`),
+    //fetchWithBackoff(`${baseUrl}/ova`),
+  ]);
 
   return {
-   // airingAnime: airingResponse.data,
-   // popularAnime: popularResponse.data,
-   // upcomingAnime: upcomingResponse.data,
-    completeAnime: completeResponse.data,
-    movies: moviesResponse.data,
-    special: specialResponse.data,
+     airingAnime: airingResponse.data,
+    popularAnime: popularResponse.data,
+   upcomingAnime: upcomingResponse.data,
+  completeAnime: completeResponse.data,
+    // movies: moviesResponse.data,
+    //special: specialResponse.data,
     //ova: ovaResponse.data,
+
   };
 };
 

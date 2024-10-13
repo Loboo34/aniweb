@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import myBlocks from "./myBlocks";
 import { useGlobalContext } from "../../context/GlobalProvider";
 import Card from "./card";
-import { useAnime } from "../../context/AnimeContext";
+
 
 const Infoblocks = () => {
   const navigate = useNavigate();

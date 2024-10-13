@@ -160,3 +160,59 @@ opacity: 1;
 .input-box:focus + .underline {
   transform: scaleX(1);
 }
+
+/*pagination*/
+.pagination{
+  position:absolute;
+  top:50%;
+  width:100%;
+  text-align:center;
+  transform:translateY(-50%);
+}
+
+.pagination a{
+  margin:6px 1px;
+  display:inline-block;
+  width:60px;
+  background:#2c3e50;
+  height:60px;
+  line-height:60px;
+  color:#fff;
+  transition:0.3s;
+  position:relative;
+  padding-right:26px;
+}
+
+.pagination a:hover
+{
+  color:#e74c3c;
+  cursor: pointer;
+}
+
+.prev{
+  border-radius: 30px 0px 0px 30px;
+}
+
+.next{
+  border-radius: 0px 30px 30px 0px;
+}
+
+
+.pagination a::before, .pagination a::after{
+  content:"";
+  position:absolute;
+  border-top:30px solid transparent;
+  border-bottom:30px solid transparent;
+}
+
+.num::before, .next::before
+{
+  border-right: 20px solid #2c3e50;
+  right:100%;
+}
+
+.num::after, .prev::after{
+  border-right: 20px solid #f1f1f1;
+  right:0;
+}
+

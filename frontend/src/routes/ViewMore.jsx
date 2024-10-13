@@ -12,6 +12,10 @@ import { useGlobalContext } from "../context/GlobalProvider";
 const ViewMore = () => {
   const { title } = useParams();
 
+
+ 
+
+
   const block = myBlocks.find((block) => block.title === title);
 
   const { popularAnime, airingAnime, upcomingAnime, completeAnime } =
