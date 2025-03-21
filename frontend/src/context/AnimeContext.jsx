@@ -57,3 +57,5 @@ export const AnimeProvider = ({ children }) => {
     </AnimeContext.Provider>
   );
 };
+
+//interaction observer

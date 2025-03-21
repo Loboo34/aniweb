@@ -330,25 +330,18 @@ router.get("/finished", cacheMiddleware, async (req, res) => {
   }
 });
 
-// router.get("all", async (req, res) => {
-//   try {
-//     const [airing, popular, upcoming, genres] = await Promise.all([
-//       axios.get(`${baseUrl}/top/anime?filter=airing`),
-//       axios.get(`${baseUrl}/top/anime?filter=bypopularity`),
-//       axios.get(`${baseUrl}/top/anime?filter=upcoming`),
-//       axios.get(`${baseUrl}/genres/anime`),
-//     ]);
-
-//     res.json({
-//       airing: airing.data,
-//       popular: popular.data,
-//       upcoming: upcoming.data,
-//       genres: genres.data,
-//     });
-//   } catch (error) {
-//     console.log(error);
-//   }
-
-// });
+router.get("/video/:id", async (req, res) => {
+  const { id } = req.params;
+  console.log("id:", id);
+  try {
+    const response = await axios.get(
+      `https://api.jikan.moe/v4/anime/${id}/videos/episodes`
+    );
+    const data = response.data;
+    res.json(data);
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 module.exports = router;
