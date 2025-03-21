@@ -1,6 +1,6 @@
- import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import animeData from "../AnimeData"
+import animeData from "../AnimeData";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -10,15 +10,24 @@ import { Autoplay, Pagination, Navigation, EffectFade } from "swiper/modules";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  
-  faAngleRight, faAngleLeft, faPlay, faBookBookmark, faBookmark
+  faAngleRight,
+  faAngleLeft,
+  faPlay,
+  faBookBookmark,
+  faBookmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { useGlobalContext } from "../context/GlobalProvider";
+import { useAnime } from "../context/AnimeContext";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const CurrenAiring = () => {
   const swiperNavNextRef = useRef(null);
   const swiperNavPrevRef = useRef(null);
-
+  const  {airingAnime} = useGlobalContext();
+ 
+  const animeInfo = airingAnime?.slice(0, 4);
   return (
     <div className=" pt-[60px] pb-4 w-full relative flex items-center justify-center">
       {" "}
@@ -47,23 +56,24 @@ const CurrenAiring = () => {
           swiper.navigation.update();
         }}
       >
-        {animeData.map((anime) => (
-          <SwiperSlide key={anime.id}>
+        {animeInfo?.map((anime) => (
+          <SwiperSlide key={anime.mal_id}>
             <div className="bg-black justify-center relative md:h-[500px] h-[250px]  flex airing">
-              <img src={anime.img} alt="" className=" w-full  mask1" />
+              <LazyLoadImage
+                src={anime?.images?.jpg.large_image_url}
+                alt=""
+                className=" w-[90%]  mask1"
+              />
               <div className=" text-white absolute md:top-[10%] bottom-[5%] left-0 z-10 md:pl-4 pl-2 ">
                 <h1 className=" md:text-[30px] text-[.9rem] font-black md:pb-4 pb-2">
-                  {anime.name}
+                  {anime.title}
                 </h1>
                 <div className="md:pb-5 pb-2 text-[.7rem] flex items-center space-x-2">
                   <span>sub | dub</span>
                   <span>Action,shounen.... </span>
                 </div>
                 <p className=" text-left md:pr-[50%] md:text-[1rem] text-[.7rem] font-medium pb-6 max-md:hidden ">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Modi, rerum assumenda qui magni voluptatem sint mollitia,
-                  dolorum dignissimos iure iusto similique cum fuga tenetur
-                  expedita officiis ullam eaque aspernatur obcaecati?
+                  {anime.synopsis.substring(0, 350)}...
                 </p>
                 <div className=" flex space-x-4 md:pt-6">
                   <span className=" text-[.9rem] md:text-[1.2rem] bg-blue-600 pl-3 pr-3 pt-2 pb-2  cursor-default hover:text-black">
@@ -95,6 +105,5 @@ const CurrenAiring = () => {
     </div>
   );
 };
-
 
 export default CurrenAiring;
